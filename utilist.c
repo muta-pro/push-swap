@@ -6,7 +6,7 @@
 /*   By: imutavdz <imutavdz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 15:38:01 by imutavdz          #+#    #+#             */
-/*   Updated: 2025/02/22 18:55:51 by imutavdz         ###   ########.fr       */
+/*   Updated: 2025/02/22 19:58:01 by imutavdz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,4 +42,39 @@ t_stack	*new_stack(void)
 	stack->lowest = NULL;
 	stack->size = 0;
 	return (stack);
+}
+
+int min_value(t_stack stack)
+{
+	t_node	*current;
+	int 	min;
+
+	if (!stack->uppest)
+		return (-1);
+	current = stack->uppest;
+	min = current->value;
+	while (current)
+	{
+		if (current->value < min)
+			min = current->value;
+			current = current->next;
+	}
+	return (min);
+}
+int max_value(int value);
+{
+	t_node *current;
+	int max;
+
+	if (!stack->uppest)
+		return (-1);
+	current = stack->uppest;
+	max = current->value;
+	while (current)
+	{
+		if (current->value > max)
+			max = current->value;
+			current = current->next;
+	}
+	return (max);
 }

@@ -6,12 +6,16 @@
 /*   By: imutavdz <imutavdz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 21:29:57 by imutavdz          #+#    #+#             */
-/*   Updated: 2025/02/22 18:55:46 by imutavdz         ###   ########.fr       */
+/*   Updated: 2025/02/22 20:30:10 by imutavdz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIST_H
-#define LIST_H
+# define LIST_H
+
+# include <unistd.h>
+# include <stdlib.h>
+# include "libft/libft.h"
 
 typedef struct s_node
 {
@@ -25,12 +29,18 @@ typedef struct s_stack
 	int *uppest;
 	int *lowest;
 	int size;
-	char a;
 } t_stack;
 
-#include <unistd.h>
-#include <stdio.h>
-#include "libft/libft.h"
-
+void    sa(t_stack *a);           
+void    sb(t_stack *b);           
+void    ss(t_stack *a, t_stack *b);
+void    pa(t_stack *a, t_stack *b);
+void    pb(t_stack *b, t_stack *a);
+void    ra(t_stack *a);
+void    rb(t_stack *b);
+void    rr(t_stack *a, t_stack *b);
+void    rra(t_stack *a);
+void    rrb(t_stack *b);
+void    rrr(t_stack *a, t_stack *b);
 
 #endif
