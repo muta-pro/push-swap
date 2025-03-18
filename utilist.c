@@ -6,9 +6,10 @@
 /*   By: imutavdz <imutavdz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 15:38:01 by imutavdz          #+#    #+#             */
-/*   Updated: 2025/02/22 19:58:01 by imutavdz         ###   ########.fr       */
+/*   Updated: 2025/03/18 18:02:57 by imutavdz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include "h_p_s.h"
 
 t_node	*new_node(int value)
 {
@@ -22,6 +23,16 @@ t_node	*new_node(int value)
 	node->prev = NULL;
 	return (node);
 }
+
+// int main()
+// {
+// 	t_node *test_n;
+
+// 	test_n = new_node(3);
+// 	printf("%d\n", test_n->value);
+// 	return (0);
+// }
+
 static void	free_node(int value)
 {
 	t_node	prev;
@@ -31,6 +42,7 @@ static void	free_node(int value)
 	curr = ?
 
 }
+
 t_stack	*new_stack(void)
 {
 	t_stack	*stack;

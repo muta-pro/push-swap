@@ -6,7 +6,7 @@
 /*   By: imutavdz <imutavdz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 21:29:57 by imutavdz          #+#    #+#             */
-/*   Updated: 2025/02/22 20:30:10 by imutavdz         ###   ########.fr       */
+/*   Updated: 2025/03/18 00:50:44 by imutavdz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,8 @@
 
 # include <unistd.h>
 # include <stdlib.h>
-# include "libft/libft.h"
+# include <stdio.h>
+// # include "libft/libft.h"
 
 typedef struct s_node
 {
