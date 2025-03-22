@@ -6,7 +6,7 @@
 /*   By: imutavdz <imutavdz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 21:53:06 by imutavdz          #+#    #+#             */
-/*   Updated: 2025/02/22 20:10:53 by imutavdz         ###   ########.fr       */
+/*   Updated: 2025/03/22 23:01:19 by imutavdz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,3 +48,9 @@ void push(t_stack *stack, int value)
 	}
 	stack->size++;
 }
+void swap(); //single stack operations sa sb
+void swapboth();//combined swap ss
+void rotate(); //ra rb rr
+void rev_rotate(); // reverse rotate rra rrb rrr
+
+//WRITE TEST FUNCTIONS

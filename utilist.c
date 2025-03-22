@@ -6,7 +6,7 @@
 /*   By: imutavdz <imutavdz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 15:38:01 by imutavdz          #+#    #+#             */
-/*   Updated: 2025/03/18 18:02:57 by imutavdz         ###   ########.fr       */
+/*   Updated: 2025/03/22 23:01:21 by imutavdz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "h_p_s.h"
@@ -54,6 +54,10 @@ t_stack	*new_stack(void)
 	stack->lowest = NULL;
 	stack->size = 0;
 	return (stack);
+}
+void append_node(t_stack *stack, int value)
+{
+	t_node *
 }
 
 int min_value(t_stack stack)
