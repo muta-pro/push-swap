@@ -6,26 +6,39 @@
 /*   By: imutavdz <imutavdz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 21:53:06 by imutavdz          #+#    #+#             */
-/*   Updated: 2025/03/23 18:38:28 by imutavdz         ###   ########.fr       */
+/*   Updated: 2025/03/23 21:53:07 by imutavdz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-void rot_up(t_stack **stack)
+void ra(t_stack **a)
 {
-	t_node *prev_up;
-	t_node *next_up;
-	t_node *prev_low;
+	rot_up(&a)
+}
+void rb(t_stack **b)
+{
+	rot_up(&b);
+}
+void rot_up(t_stack *stack)
+{
+	t_node *holder;
 
-	if (!stack->head || !stack->head->next)
-		return;
-	prev_up = stack->head;
-	prev_low = stack->tail;
-	next_up = stack->head->next;
-	stack->top = new_top;
-    stack->bottom = old_top;
-    old_tail->next = old_top;
-    old_top->prev = old_tail;
-    old_top->next = NULL;
+	if (!stak || !stack->head || !stack->head->next)
+		return ;
+	holder = stack->head; //node to be moved at the bottom
+	stack->head = stack->head->next;
+	stack->head->prev = NULL;
+	stack->tail->next = holder;
+	stack->prev = stack->tail;
+	temp->next = NULL;
+	stack->tail = temp;
+}
+
+void pa(t_stack *a, t_stack *b)
+{
+	push(&a, &b);
+}
+void pb(t_stack *b, t_stack *a)
+{
+	push(&b, &a);
 }
 
 void push(t_stack **dest, t_stack **src)
@@ -33,7 +46,7 @@ void push(t_stack **dest, t_stack **src)
 	t_node *node;
 
 	node = new_node(value);
-	if (!node)
+	if (!node || !src || !*src || !(*src)->head || !dest || !dest)
 		return ;
 	if (!stack->head)
 	{
