@@ -1,56 +1,74 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   operations.c                                       :+:      :+:    :+:   */
+/*   instructions.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: imutavdz <imutavdz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 21:53:06 by imutavdz          #+#    #+#             */
-/*   Updated: 2025/03/22 23:01:19 by imutavdz         ###   ########.fr       */
+/*   Updated: 2025/03/23 18:38:28 by imutavdz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void rot_up(t_stack *stack)
+void rot_up(t_stack **stack)
 {
 	t_node *prev_up;
 	t_node *next_up;
 	t_node *prev_low;
 
-	if (!stack->uppest || !stack->uppest->next)
+	if (!stack->head || !stack->head->next)
 		return;
-	prev_up = stack->uppest;
-	prev_low = stack->lowest;
-	next_up = stack->uppest->next;
+	prev_up = stack->head;
+	prev_low = stack->tail;
+	next_up = stack->head->next;
 	stack->top = new_top;
     stack->bottom = old_top;
-    old_bottom->next = old_top;
-    old_top->prev = old_bottom;
+    old_tail->next = old_top;
+    old_top->prev = old_tail;
     old_top->next = NULL;
 }
 
-void push(t_stack *stack, int value)
+void push(t_stack **dest, t_stack **src)
 {
 	t_node *node;
 
 	node = new_node(value);
 	if (!node)
 		return ;
-	if (!stack->uppest)
+	if (!stack->head)
 	{
-		stack->lowest = node;
-		stack->uppest = node;
+		stack->tail = node;
+		stack->head = node;
 	}
 	else
 	{
-		node->prev = stack->uppest;
-		stack->uppest->next = node;
-		stack->uppest = node;
+		node->prev = stack->head;
+		stack->head->next = node;
+		stack->head = node;
 	}
 	stack->size++;
 }
-void swap(); //single stack operations sa sb
-void swapboth();//combined swap ss
-void rotate(); //ra rb rr
-void rev_rotate(); // reverse rotate rra rrb rrr
+void pa(stack *a, stack *b)
+{
+	if (b->head >= 0)
+	{
+		a->[++(a->head)] = b->
+	}
+}
 
+void swap(t_stack **stack)//single stack operations sa sb
+{
+	t_stack *first;
+	t_stack *second;
+	if ((!*stack) || !((*stack)->next))
+		retutn;
+	first = *stack;
+	second = (*stack)->next;
+	first->next = second->next;
+	second->next = first;
+	*stack = second;
+}
+
+void swapboth();//combined swap ss
+void rot_down(t_stack **stack); // reverse rotate rra rrb rrr
 //WRITE TEST FUNCTIONS
