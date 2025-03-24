@@ -6,7 +6,7 @@
 /*   By: imutavdz <imutavdz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 21:29:57 by imutavdz          #+#    #+#             */
-/*   Updated: 2025/03/23 18:38:20 by imutavdz         ###   ########.fr       */
+/*   Updated: 2025/03/24 13:15:08 by imutavdz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,31 +18,32 @@
 # include <stdio.h>
 // # include "libft/libft.h"
 
-typedef struct s_node
+typedef struct	s_node
 {
-	int value;//integer value
-	struct s_node *next;
-	struct s_node *prev;
+	int				value;//integer value
+	struct s_node	*next;
+	struct s_node	*prev;
 } t_node;//number in the stack, node of the DLL
 
-typedef struct s_stack
+typedef struct	s_stack
 {
-	t_node *head;//top element of the struct
-	t_node *tail;//bottom element
-	int stack_size;//track of number of input
+	t_node	*head;//top element of the struct
+	t_node	*tail;//bottom element
+	int		stack_size;//track of number of input
 } t_stack;//manages linked list
 
 //stack init and manageent
 t_stack	*init_stack(void);
-t_node *new_node(int value);
+t_node	*new_node(int value);
 void	free_stack(t_stack **stack);
-int 	is_sorted(t_stack *stack);
+int		is_sorted(t_stack *stack);
 
 //stack operations
-void	push(t_stack **src, t_stack **dest);
+void	push(t_stack *src, t_stack *dest);
 void	swap(t_stack *stack);
-void	rotate_stack(t_stack **stack);
-void	split_stack(t_stack **stack);//into smaller chunks - if <10 <100 <500
+void	rot_up(t_stack *stack);
+void	rot_down(t_stack *stack);
+void	split_stack(t_stack *stack);//into smaller chunks - if <10 <100 <500
 
 //sorting algo
 void	sort_stack(t_stack **stack);

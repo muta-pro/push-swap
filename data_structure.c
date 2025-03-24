@@ -6,7 +6,7 @@
 /*   By: imutavdz <imutavdz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 15:38:01 by imutavdz          #+#    #+#             */
-/*   Updated: 2025/03/23 18:38:29 by imutavdz         ###   ########.fr       */
+/*   Updated: 2025/03/24 13:15:15 by imutavdz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "h_p_s.h"
@@ -42,6 +42,12 @@ static void	free_node(int value)
 	curr = ?
 
 }
+void free_stack(t_stack **stack)
+{
+	//free nodes
+	free(*stack);
+	*stack = NULL;
+}
 
 t_stack	*init_stack(void)
 {
@@ -72,7 +78,7 @@ void add_head(t_stack *stack, t_node *node)
 	}
 	stack->stack_size++;
 }
-t_node remove_head(t_stack *stack, t_node node)
+t_node *remove_head(t_stack *stack, t_node node)
 {
 	t_node *holder;
 

@@ -6,18 +6,11 @@
 /*   By: imutavdz <imutavdz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 21:53:06 by imutavdz          #+#    #+#             */
-/*   Updated: 2025/03/23 21:53:07 by imutavdz         ###   ########.fr       */
+/*   Updated: 2025/03/24 13:15:22 by imutavdz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-void ra(t_stack **a)
-{
-	rot_up(&a)
-}
-void rb(t_stack **b)
-{
-	rot_up(&b);
-}
-void rot_up(t_stack *stack)
+
+void rot_up(t_stack *stack)//moving the head to the tail
 {
 	t_node *holder;
 
@@ -32,6 +25,26 @@ void rot_up(t_stack *stack)
 	stack->tail = temp;
 }
 
+void ra(t_stack **a)
+{
+	rot_up(&a)
+
+}
+void rb(t_stack **b)
+{
+	rot_up(&b);
+}
+
+void push(t_stack *dest, t_stack *src)
+{
+	t_node *node;
+
+	node = remove_head(src);
+	if (!src || !src->head || !dest || !dest)
+		return ;
+	add_head(dest, node);
+}
+
 void pa(t_stack *a, t_stack *b)
 {
 	push(&a, &b);
@@ -41,47 +54,68 @@ void pb(t_stack *b, t_stack *a)
 	push(&b, &a);
 }
 
-void push(t_stack **dest, t_stack **src)
-{
-	t_node *node;
+// void pa(stack *a, stack *b)
+// {
+// 	if (b->head >= 0)
+// 	{
+// 		a->[++(a->head)] = b->
+// 	}
+// }
 
-	node = new_node(value);
-	if (!node || !src || !*src || !(*src)->head || !dest || !dest)
-		return ;
-	if (!stack->head)
-	{
-		stack->tail = node;
-		stack->head = node;
-	}
-	else
-	{
-		node->prev = stack->head;
-		stack->head->next = node;
-		stack->head = node;
-	}
-	stack->size++;
-}
-void pa(stack *a, stack *b)
+void swap(t_stack *stack)//single stack operations sa sb
 {
-	if (b->head >= 0)
-	{
-		a->[++(a->head)] = b->
-	}
-}
+	t_node holder;
 
-void swap(t_stack **stack)//single stack operations sa sb
-{
-	t_stack *first;
-	t_stack *second;
-	if ((!*stack) || !((*stack)->next))
+	if (!stack || !stack->head || !stack->head->next)
 		retutn;
-	first = *stack;
-	second = (*stack)->next;
-	first->next = second->next;
-	second->next = first;
-	*stack = second;
+	holder = stack->head->value;
+	stack->head->value = stack->head->next->value;
+	stack->head->next->value = holder;
 }
 
-void swapboth();//combined swap ss
-void rot_down(t_stack **stack); // reverse rotate rra rrb rrr
+void sa(t_stack *a)
+{
+	swap(&a);
+}
+void sb(t_stack *b)
+{
+	swap(&b);
+}
+void ss(t_stack *a, t_stack *b)
+{
+	swap(&a);
+	swap(&b);
+}
+
+void rot_down(t_stack *stack)// reverse rotate rra rrb rrr
+{
+	t_node holder;
+
+	if (!stack || !stack->head || !stack->head->next)
+		return ;
+	holder = stack->tail;
+	stack->tail = stack->tail->prev;
+	stack->tail->next = NULL;
+	holder->next = stack->head;
+	holder->prev = NULL;
+	stack->head->prev = holder;
+	stack->head = holder;
+}
+
+void rra(t_stack *a)
+{
+	rot_down(&a);
+}
+
+void rrb(t_stack *b)
+{
+	rot_down(&b);
+}
+
+void rrr(t_stack *a, t_stack *b)
+{
+	rot_down(*a);
+	rot_down(*b);
+}
+
 //WRITE TEST FUNCTIONS
