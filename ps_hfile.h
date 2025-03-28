@@ -6,7 +6,7 @@
 /*   By: imutavdz <imutavdz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 21:29:57 by imutavdz          #+#    #+#             */
-/*   Updated: 2025/03/24 13:15:08 by imutavdz         ###   ########.fr       */
+/*   Updated: 2025/03/26 22:15:04 by imutavdz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,15 @@ t_stack	*init_stack(void);
 t_node	*new_node(int value);
 void	free_stack(t_stack **stack);
 int		is_sorted(t_stack *stack);
+t_node	*remove_head(t_stack *stack);
+void	add_head(t_stack *stack, t_node *node);
+void	fill_stack(t_stack *stack, int argc, char *argv[]);
 
 //stack operations
-void	push(t_stack *src, t_stack *dest);
-void	swap(t_stack *stack);
-void	rot_up(t_stack *stack);
-void	rot_down(t_stack *stack);
+void	push(t_stack **src, t_stack **dest);
+void	swap(t_stack **stack);
+void	rot_up(t_stack **stack);
+void	rot_down(t_stack **stack);
 void	split_stack(t_stack *stack);//into smaller chunks - if <10 <100 <500
 
 //sorting algo
@@ -59,6 +62,7 @@ void	merge_chunks(t_stack **a, t_stack **b);
 //input handling
 int		parse_input(int argc, char **argv, t_stack **a);
 void	print_error(void);
+void	print_stack(t_stack *stack);
 
 //operations specific
 void    sa(t_stack *a);
@@ -72,6 +76,9 @@ void    rr(t_stack *a, t_stack *b);
 void    rra(t_stack *a);
 void    rrb(t_stack *b);
 void    rrr(t_stack *a, t_stack *b);
+
+//tests
+
 
 //cost calculating functions of moving elements betwwen stacks
 //position tracking functions

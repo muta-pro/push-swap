@@ -6,10 +6,10 @@
 /*   By: imutavdz <imutavdz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 15:38:01 by imutavdz          #+#    #+#             */
-/*   Updated: 2025/03/24 13:15:15 by imutavdz         ###   ########.fr       */
+/*   Updated: 2025/03/26 23:29:07 by imutavdz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "h_p_s.h"
+#include "ps_hfile.h"
 
 t_node	*new_node(int value)
 {
@@ -24,27 +24,27 @@ t_node	*new_node(int value)
 	return (node);
 }
 
-// int main()
-// {
-// 	t_node *test_n;
-
-// 	test_n = new_node(3);
-// 	printf("%d\n", test_n->value);
-// 	return (0);
-// }
-
-static void	free_node(int value)
+void	free_node(t_node *node)
 {
-	t_node	prev;
-	t_node	curr;
-
-	prev = NULL;
-	curr = ?
-
+	if (node)
+		free(node);
+	node = NULL;
 }
+
 void free_stack(t_stack **stack)
 {
-	//free nodes
+	t_node *node;
+	t_node *next_node;
+
+	if (!stack || !*stack)
+		return;
+	node = (*stack)->head;
+	while (node)
+	{
+		next_node = node->next;
+		free_node(node);
+		node = next_node;
+	}
 	free(*stack);
 	*stack = NULL;
 }
@@ -58,27 +58,28 @@ t_stack	*init_stack(void)
 		return (NULL);
 	stack->head = NULL;
 	stack->tail = NULL;
-	stack->size = 0;
+	stack->stack_size = 0;
 	return (stack);
 }
-void add_head(t_stack *stack, t_node *node)
+void	add_head(t_stack *stack, t_node *node)
 {
-	if (!stack || !node)
+	if (!stack || !node)//if node is null
 		return;
-	if (!stack->head)
+	if (!stack->head)//empty list
 	{
 		stack->head = node;
 		stack->tail = node;
 	}
 	else
 	{
-		node->next = stack->head;
-		stack->head->prev = node;
-		stack->head = node;
+		node->next = stack->head;//new A node points next to B
+		stack->head->prev = node;//prev pointer of B points to A node
+		stack->head = node;//head pointer points to A node
 	}
 	stack->stack_size++;
 }
-t_node *remove_head(t_stack *stack, t_node node)
+
+t_node	*remove_head(t_stack *stack)
 {
 	t_node *holder;
 
@@ -93,24 +94,11 @@ t_node *remove_head(t_stack *stack, t_node node)
 	else
 	{
 		stack->head = stack->head->next;
-		stack->head->prev = NULL;
+		if (stack->head)
+			stack->head->prev = NULL;
 	}
 	holder->next = NULL;
 	holder->prev = NULL;
 	stack->stack_size--;
 	return (holder);
-}
-
-
-void print_stack(t_stack **stack)
-{
-	t_node *temp;
-
-	temp = stack->head;
-	while (temp)
-	{
-		printf("%d \n", temp->value);
-		temp = temp->next;
-	}
-	printf("\n");
 }

@@ -1,27 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing.c                                          :+:      :+:    :+:   */
+/*   test_input.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: imutavdz <imutavdz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/24 12:06:25 by imutavdz          #+#    #+#             */
-/*   Updated: 2025/03/26 15:00:18 by imutavdz         ###   ########.fr       */
+/*   Created: 2025/03/24 22:46:15 by imutavdz          #+#    #+#             */
+/*   Updated: 2025/03/26 23:28:54 by imutavdz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include "ps_hfile.h"
 
-int is_sorted(t_stack *stack)
+int main(int argc, char *argv[])
 {
-	int current;
+	t_stack *a;
+	t_stack *b;
 
-	if (!stack || !stack->head)
-		return ;
-	current = stack->head;
-	while (stack->next)
-	{
-		if (current->value > stack->next->value)
-			return (0);
-		current = current->next;
-	}
-	return (1);
+	a = init_stack();
+	b = init_stack();
+	if (!a || !b)
+		return (1);
+	fill_stack(a, argc, argv);
+	print_stack(a);
+	return 0;
 }
