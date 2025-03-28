@@ -6,7 +6,7 @@
 /*   By: imutavdz <imutavdz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/23 16:20:49 by imutavdz          #+#    #+#             */
-/*   Updated: 2025/03/26 23:29:02 by imutavdz         ###   ########.fr       */
+/*   Updated: 2025/03/28 14:27:27 by imutavdz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "ps_hfile.h"
@@ -27,40 +27,40 @@
 // 	return (1);
 // }
 
-int min_value(t_stack *stack)
-{
-	t_node	*current;
-	int 	min;
+// int min_value(t_stack *stack)
+// {
+// 	t_node	*current;
+// 	int 	min;
 
-	if (!stack->head)
-		return (0);
-	current = stack->head;
-	min = current->value;
-	while (current)
-	{
-		if (current->value < min)
-			min = current->value;
-			current = current->next;
-	}
-	return (min);
-}
-int max_value(t_stack *stack)
-{
-	t_node *current;
-	int max;
+// 	if (!stack->head)
+// 		return (0);
+// 	current = stack->head;
+// 	min = current->value;
+// 	while (current)
+// 	{
+// 		if (current->value < min)
+// 			min = current->value;
+// 			current = current->next;
+// 	}
+// 	return (min);
+// }
+// int max_value(t_stack *stack)
+// {
+// 	t_node *current;
+// 	int max;
 
-	if (!stack->head)
-		return (0);
-	current = stack->head;
-	max = current->value;
-	while (current)
-	{
-		if (current->value > max)
-			max = current->value;
-			current = current->next;
-	}
-	return (max);
-}
+// 	if (!stack->head)
+// 		return (0);
+// 	current = stack->head;
+// 	max = current->value;
+// 	while (current)
+// 	{
+// 		if (current->value > max)
+// 			max = current->value;
+// 			current = current->next;
+// 	}
+// 	return (max);
+// }
 
 // int position_value(t_stack *stack, t_node value)
 // {

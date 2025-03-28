@@ -6,7 +6,7 @@
 /*   By: imutavdz <imutavdz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 21:24:14 by imutavdz          #+#    #+#             */
-/*   Updated: 2025/03/26 23:17:50 by imutavdz         ###   ########.fr       */
+/*   Updated: 2025/03/28 14:33:42 by imutavdz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "ps_hfile.h"
@@ -35,5 +35,12 @@ void	ra(t_stack *a)
 void	rb(t_stack *b)
 {
 	printf("rb\n");
+	rot_up(&b);
+}
+
+void rr(t_stack *a, t_stack *b)
+{
+	printf("rr\n");
+	rot_up(&a);
 	rot_up(&b);
 }
