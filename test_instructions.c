@@ -6,11 +6,11 @@
 /*   By: imutavdz <imutavdz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 12:32:38 by imutavdz          #+#    #+#             */
-/*   Updated: 2025/03/28 14:41:06 by imutavdz         ###   ########.fr       */
+/*   Updated: 2025/04/05 18:43:35 by imutavdz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ps_hfile.h"
+#include "ps.h"
 
 // int main(int argc, char *argv[])
 // {

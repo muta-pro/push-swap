@@ -1,34 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test_input.c                                       :+:      :+:    :+:   */
+/*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: imutavdz <imutavdz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/24 22:46:15 by imutavdz          #+#    #+#             */
-/*   Updated: 2025/04/05 18:43:40 by imutavdz         ###   ########.fr       */
+/*   Created: 2024/10/24 21:49:41 by imutavdz          #+#    #+#             */
+/*   Updated: 2024/10/31 14:53:28 by imutavdz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "ps.h"
+#include "libft.h"
 
-// int main(int argc, char *argv[])
-// {
-// 	t_stack *a;
-// 	t_stack *b;
-
-// 	a = init_stack();
-// 	b = init_stack();
-// 	if (!a || !b)
-// 		return (1);
-// 	fill_stack(a, argc, argv);
-// 	print_stack(a);
-// 	return 0;
-// }
-
-int main(int argc, char *argv[])
+void	*ft_memcpy(void *dest, const void *src, size_t n)
 {
-	int input;
-	input = minus_check(argv[1]);
-	printf("%d", input);
-	return 0;
+	unsigned char		*dst;
+	const unsigned char	*s;
+
+	if (!dest && ! src)
+		return (NULL);
+	dst = (unsigned char *)dest;
+	s = (const unsigned char *)src;
+	while (n-- > 0)
+	{
+		*dst++ = *s++;
+	}
+	return (dest);
 }

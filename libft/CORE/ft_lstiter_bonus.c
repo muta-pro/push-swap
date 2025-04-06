@@ -1,34 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test_input.c                                       :+:      :+:    :+:   */
+/*   ft_lstiter_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: imutavdz <imutavdz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/24 22:46:15 by imutavdz          #+#    #+#             */
-/*   Updated: 2025/04/05 18:43:40 by imutavdz         ###   ########.fr       */
+/*   Created: 2024/11/01 22:55:03 by imutavdz          #+#    #+#             */
+/*   Updated: 2024/11/02 16:08:08 by imutavdz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "ps.h"
+#include "libft.h"
 
-// int main(int argc, char *argv[])
-// {
-// 	t_stack *a;
-// 	t_stack *b;
-
-// 	a = init_stack();
-// 	b = init_stack();
-// 	if (!a || !b)
-// 		return (1);
-// 	fill_stack(a, argc, argv);
-// 	print_stack(a);
-// 	return 0;
-// }
-
-int main(int argc, char *argv[])
+void	ft_lstiter(t_list *lst, void (*f)(void *))
 {
-	int input;
-	input = minus_check(argv[1]);
-	printf("%d", input);
-	return 0;
+	while (lst != NULL)
+	{
+		f(lst->content);
+		lst = lst->next;
+	}
 }

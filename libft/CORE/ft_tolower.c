@@ -1,34 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test_input.c                                       :+:      :+:    :+:   */
+/*   ft_tolower.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: imutavdz <imutavdz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/24 22:46:15 by imutavdz          #+#    #+#             */
-/*   Updated: 2025/04/05 18:43:40 by imutavdz         ###   ########.fr       */
+/*   Created: 2024/10/14 15:55:05 by imutavdz          #+#    #+#             */
+/*   Updated: 2024/10/31 14:55:48 by imutavdz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "ps.h"
-
-// int main(int argc, char *argv[])
-// {
-// 	t_stack *a;
-// 	t_stack *b;
-
-// 	a = init_stack();
-// 	b = init_stack();
-// 	if (!a || !b)
-// 		return (1);
-// 	fill_stack(a, argc, argv);
-// 	print_stack(a);
-// 	return 0;
-// }
-
-int main(int argc, char *argv[])
+/*
+ * ft_tolower: Converts an uppercase letter to lowercase.
+ * Params: int c (character to convert)
+ * Return: int - lowercase character or original if not uppercase
+ */
+int	ft_tolower(int c)
 {
-	int input;
-	input = minus_check(argv[1]);
-	printf("%d", input);
-	return 0;
+	if (c > 64 && c < 91)
+	{
+		c += 32;
+		return (c);
+	}
+	else
+		return (c);
 }

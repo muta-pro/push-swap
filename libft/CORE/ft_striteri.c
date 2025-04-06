@@ -1,34 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test_input.c                                       :+:      :+:    :+:   */
+/*   ft_striteri.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: imutavdz <imutavdz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/24 22:46:15 by imutavdz          #+#    #+#             */
-/*   Updated: 2025/04/05 18:43:40 by imutavdz         ###   ########.fr       */
+/*   Created: 2024/10/30 16:12:07 by imutavdz          #+#    #+#             */
+/*   Updated: 2024/10/30 18:44:42 by imutavdz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "ps.h"
+#include "libft.h"
 
-// int main(int argc, char *argv[])
-// {
-// 	t_stack *a;
-// 	t_stack *b;
-
-// 	a = init_stack();
-// 	b = init_stack();
-// 	if (!a || !b)
-// 		return (1);
-// 	fill_stack(a, argc, argv);
-// 	print_stack(a);
-// 	return 0;
-// }
-
-int main(int argc, char *argv[])
+void	ft_striteri(char *s, void (*f)(unsigned int, char*))
 {
-	int input;
-	input = minus_check(argv[1]);
-	printf("%d", input);
-	return 0;
+	unsigned int	i;
+
+	i = 0;
+	while (s[i] != '\0')
+	{
+		(*f)(i, &s[i]);
+		i++;
+	}
 }

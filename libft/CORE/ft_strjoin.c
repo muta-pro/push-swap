@@ -1,34 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test_input.c                                       :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: imutavdz <imutavdz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/24 22:46:15 by imutavdz          #+#    #+#             */
-/*   Updated: 2025/04/05 18:43:40 by imutavdz         ###   ########.fr       */
+/*   Created: 2024/10/30 16:09:42 by imutavdz          #+#    #+#             */
+/*   Updated: 2024/10/30 18:44:32 by imutavdz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "ps.h"
+#include "libft.h"
 
-// int main(int argc, char *argv[])
-// {
-// 	t_stack *a;
-// 	t_stack *b;
-
-// 	a = init_stack();
-// 	b = init_stack();
-// 	if (!a || !b)
-// 		return (1);
-// 	fill_stack(a, argc, argv);
-// 	print_stack(a);
-// 	return 0;
-// }
-
-int main(int argc, char *argv[])
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-	int input;
-	input = minus_check(argv[1]);
-	printf("%d", input);
-	return 0;
+	char	*dst;
+	size_t	i;
+	size_t	j;
+
+	i = 0;
+	j = 0;
+	dst = (char *)malloc(ft_strlen(s1) + (ft_strlen(s2) + 1) * sizeof(char));
+	if (!dst)
+		return (NULL);
+	while (s1[i] != '\0')
+	{
+		dst[i] = s1[i];
+		i++;
+	}
+	while (s2[j] != '\0')
+	{
+		dst[i + j] = s2[j];
+		j++;
+	}
+	dst[i + j] = '\0';
+	return (dst);
 }

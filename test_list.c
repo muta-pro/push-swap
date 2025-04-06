@@ -6,10 +6,10 @@
 /*   By: imutavdz <imutavdz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 15:32:52 by imutavdz          #+#    #+#             */
-/*   Updated: 2025/03/25 01:12:30 by imutavdz         ###   ########.fr       */
+/*   Updated: 2025/04/05 18:43:30 by imutavdz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "ps_hfile.h"
+#include "ps.h"
 //this file is to test my doubly linked list functions
 //first we create the node and see it exist.
 t_node	*new_node(int value)

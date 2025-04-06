@@ -1,34 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test_input.c                                       :+:      :+:    :+:   */
+/*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: imutavdz <imutavdz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/24 22:46:15 by imutavdz          #+#    #+#             */
-/*   Updated: 2025/04/05 18:43:40 by imutavdz         ###   ########.fr       */
+/*   Created: 2024/12/30 14:34:18 by imutavdz          #+#    #+#             */
+/*   Updated: 2025/01/06 16:21:43 by imutavdz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "ps.h"
+#ifndef FT_PRINTF_H
+# define FT_PRINTF_H
 
-// int main(int argc, char *argv[])
-// {
-// 	t_stack *a;
-// 	t_stack *b;
+# include <unistd.h>
+# include <stdarg.h>
 
-// 	a = init_stack();
-// 	b = init_stack();
-// 	if (!a || !b)
-// 		return (1);
-// 	fill_stack(a, argc, argv);
-// 	print_stack(a);
-// 	return 0;
-// }
+int		ft_printf(const char *fs, ...);
+int		handle_placeholder(char spec, va_list args);
+int		ft_putuns(unsigned int n);
+int		ft_putchar(char c);
+int		ft_putstr(char *s);
+int		ft_putnbr(int n);
+int		ft_puthex(unsigned int n, char spec);
+int		ft_putptr(void *p);
+int		ft_base16(unsigned long n, char *base);
 
-int main(int argc, char *argv[])
-{
-	int input;
-	input = minus_check(argv[1]);
-	printf("%d", input);
-	return 0;
-}
+#endif

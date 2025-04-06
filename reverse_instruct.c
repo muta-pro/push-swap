@@ -6,10 +6,10 @@
 /*   By: imutavdz <imutavdz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 21:53:06 by imutavdz          #+#    #+#             */
-/*   Updated: 2025/03/28 14:39:47 by imutavdz         ###   ########.fr       */
+/*   Updated: 2025/04/05 18:42:45 by imutavdz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "ps_hfile.h"
+#include "ps.h"
 
 void rot_down(t_stack **stack)// reverse rotate rra rrb rrr
 {

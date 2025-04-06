@@ -6,10 +6,10 @@
 /*   By: imutavdz <imutavdz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 21:23:45 by imutavdz          #+#    #+#             */
-/*   Updated: 2025/03/26 22:43:12 by imutavdz         ###   ########.fr       */
+/*   Updated: 2025/04/05 18:42:31 by imutavdz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "ps_hfile.h"
+#include "ps.h"
 
 void	push(t_stack **dest, t_stack **src)
 {

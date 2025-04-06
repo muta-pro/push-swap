@@ -6,10 +6,10 @@
 /*   By: imutavdz <imutavdz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 21:24:14 by imutavdz          #+#    #+#             */
-/*   Updated: 2025/03/28 14:33:42 by imutavdz         ###   ########.fr       */
+/*   Updated: 2025/04/05 20:51:50 by imutavdz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "ps_hfile.h"
+#include "ps.h"
 
 void	rot_up(t_stack **stack)//moving the head to the tail
 {

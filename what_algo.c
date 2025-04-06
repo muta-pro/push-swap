@@ -1,34 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test_input.c                                       :+:      :+:    :+:   */
+/*   what_algo.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: imutavdz <imutavdz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/24 22:46:15 by imutavdz          #+#    #+#             */
-/*   Updated: 2025/04/05 18:43:40 by imutavdz         ###   ########.fr       */
+/*   Created: 2025/04/05 18:38:55 by imutavdz          #+#    #+#             */
+/*   Updated: 2025/04/06 03:06:30 by imutavdz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+/*
+algorythm selection logic
+based on input size
+*/
 #include "ps.h"
 
-// int main(int argc, char *argv[])
-// {
-// 	t_stack *a;
-// 	t_stack *b;
-
-// 	a = init_stack();
-// 	b = init_stack();
-// 	if (!a || !b)
-// 		return (1);
-// 	fill_stack(a, argc, argv);
-// 	print_stack(a);
-// 	return 0;
-// }
-
-int main(int argc, char *argv[])
+void	minisort(t_stack *a, t_stack *b, int size)
 {
-	int input;
-	input = minus_check(argv[1]);
-	printf("%d", input);
-	return 0;
+	if (size == 2)
+		sa(a);
+	else if (size == 3)
+		three_sort(a);
+	else if (size == 4)
+		four_sort(a, b);
+	else if (size == 5)
+		five_sort(a, b);
 }
