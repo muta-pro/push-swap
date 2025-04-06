@@ -6,11 +6,11 @@
 /*   By: imutavdz <imutavdz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 22:46:15 by imutavdz          #+#    #+#             */
-/*   Updated: 2025/04/05 18:43:40 by imutavdz         ###   ########.fr       */
+/*   Updated: 2025/04/06 15:34:44 by imutavdz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+//print stack should show value + position
 #include "ps.h"
-
 // int main(int argc, char *argv[])
 // {
 // 	t_stack *a;
@@ -25,10 +25,14 @@
 // 	return 0;
 // }
 
-int main(int argc, char *argv[])
+int	main(int argc, char *argv[])
 {
-	int input;
-	input = minus_check(argv[1]);
-	printf("%d", input);
-	return 0;
+	t_stack	*a = NULL;
+
+	if (!parse_input(argc, argv, &a))
+		return (1);
+	assign_pos(&a, a->stack_size);
+	print_stack(a);
+	free_stack(&a);
+	return (0);
 }

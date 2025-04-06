@@ -6,19 +6,19 @@
 /*   By: imutavdz <imutavdz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/22 23:28:19 by imutavdz          #+#    #+#             */
-/*   Updated: 2025/04/06 03:00:23 by imutavdz         ###   ########.fr       */
+/*   Updated: 2025/04/06 15:34:46 by imutavdz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "ps.h"
-//error handling
-//arguments handling - integers
-//chinking for initial distribution of elements
-//handle MIN_NUM MAX_NUM
-// - 0 + 0 handle
-//is dup
-//target position calculation
-//optimization for each move
-//handling of edge cases
+/*
+** Program Flow:
+* 1. Parse and validate arguments
+* 2. Build stacks with position assignment
+* 3. Check if already sorted
+* 4. Choose sorting algorithm based on size
+* 5. Execute chosen sorting algorithm
+* 6. Free memory and exit
+*/
 void	ultimate_sorter(t_stack **a, t_stack **b)
 {
 	int	size;
@@ -26,7 +26,7 @@ void	ultimate_sorter(t_stack **a, t_stack **b)
 	assign_pos(a, (*a)->stack_size);
 	size = (*a)->stack_size;
 	if (size <= 1)
-		return;
+		return ;
 	else if (size <= 5)
 		minisort(a, b); //bubble sort / insertion sort for stack
 	else if (size <= 100)
