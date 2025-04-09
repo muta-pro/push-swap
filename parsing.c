@@ -6,7 +6,7 @@
 /*   By: imutavdz <imutavdz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 12:06:25 by imutavdz          #+#    #+#             */
-/*   Updated: 2025/04/06 15:34:53 by imutavdz         ###   ########.fr       */
+/*   Updated: 2025/04/09 05:41:51 by imutavdz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 /*
@@ -19,89 +19,90 @@ handle errors and exit
 */
 #include "ps.h"
 
-static int	is_valid_arg(char *str, t_stack *a, t_stack *b)
+static int	is_valid_arg(const char *str, long long *values)
 {
-	long	value;
-	int		overflow;
+	long		output;
+	int			overflow;
 
 	if (!is_valid_digit(str))
-		return (error_exit("Error\n", a, b), 0);
-	if (is_overflow(str))
-	{
-		error_exit("Error\n", a, b);
-		return (0);
-	}
-	value = ft_atol_ps(str, &overflow);
+		clean_exit("Error: invalid digit\n", NULL, NULL, NULL);
+	output = ft_atol_ps(str, &overflow);
 	if (overflow)
-		return (error_exit("error\n", a, b), 0);
-	if (has_dup(a, (int)value))
-	{
-		return (error_exit("Error\n", a, b), 0);
-	}
-	return ((int)value);
+		clean_exit("Error: overflow\n", NULL, NULL, NULL);
+	*values = output;
+	return (1); //success
 }
 
-int	single_str_parsing(char *str, t_stack *a, t_stack *b)
+int	fill_stack(t_stack **a, long long *holder, int size)
 {
-	char	**split;
 	int		i;
-	int		value;
 	t_node	*node;
 
-	split = ft_split(str, ' ');
-	if (!split)
-		return (error_exit("errpr\n", a, b), 0);
 	i = 0;
-	while (split[i])
+	while (i < size)
 	{
-		value = is_valid_arg(split[i], a, b);
-		if (value == 0)
-			return (free_split(split), 0);
-		node = new_node(value);
+		node = new_node((int)holder[i]);
 		if (!node)
-		{
-			free_split(split);
-			error_exit("error\n", a, b);
 			return (0);
-		}
 		add_tail(a, node);
 		i++;
 	}
-	return (free_split(split), 1);
+	return (1); //success
 }
 
-int	multi_args_parsing(int argc, char **argv[], t_stack *a, t_stack *b)
+int	valid_input(int argc, char *argv[], t_stack *a)
 {
-	int		i;
-	int		value;
-	t_node	*node;
+	long long	*holder;
+	int			i;
+	int			size;
 
+	size = argc - 1;
 	i = 1;
+	holder = malloc(sizeof(long long) * size); //?
+	if (!holder)
+		return (0);
 	while (i < argc)
 	{
-		value = is_valid_arg(*argv[i], a, b);
-		if (value == 0)
-			return (0);
-		node = new_node(value);
-		if (!node)
-			return (error_exit("error\n", a, b), 0);
-		add_tail(a, node);
+		if (!is_valid_arg(argv[i], &holder[i - 1])) //pass-by-reference approach
+			clean_exit("Error\n", NULL, NULL, holder);
 		i++;
 	}
+	if (has_dup(holder, size))
+		clean_exit("Error: has duplicate\n", NULL, NULL, holder);
+	if (!fill_stack(&a, holder, size))
+	{
+		free(holder);
+		return (0);
+	}
+	free (holder);
 	return (1);
 }
 
-int	parse_input(int argc, char *argv[], t_stack *a, t_stack *b)
-{
-	int	result;
+// int	single_str_parsing(char *str, t_stack *a, t_stack *b)
+// {
+// 	char	**split;
+// 	int		i;
+// 	int		value;
+// 	t_node	*node;
 
-	if (argc < 2)
-		return (0);
-	if (argc == 2)
-		result = single_str_parsing(argv[1], a, b);
-	else
-		result = multi_args_parsing(argc, &argv, a, b);
-	if (result)
-		assign_pos(a);
-	return (result);
-}
+// 	split = ft_split(str, ' ');
+// 	if (!split)
+// 		return (error_exit("errpr\n", a, b), 0);
+// 	i = 0;
+// 	while (split[i])
+// 	{
+// 		value = is_valid_arg(split[i], a, b);
+// 		if (value == 0)
+// 			return (free_split(split), 0);
+// 		node = new_node(value);
+// 		if (!node)
+// 		{
+// 			free_split(split);
+// 			error_exit("error\n", a, b);
+// 			return (0);
+// 		}
+// 		add_tail(a, node);
+// 		i++;
+// 	}
+// 	return (free_split(split), 1);
+// }

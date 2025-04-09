@@ -6,7 +6,7 @@
 /*   By: imutavdz <imutavdz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 21:29:57 by imutavdz          #+#    #+#             */
-/*   Updated: 2025/04/06 15:34:51 by imutavdz         ###   ########.fr       */
+/*   Updated: 2025/04/09 05:41:58 by imutavdz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,9 +47,10 @@ typedef struct s_cost
 t_stack		*init_stack(void);
 t_node		*new_node(int value);
 t_node		*remove_head(t_stack *stack);
-void		add_head(t_stack *stack, t_node *node);
-void		add_tail(t_stack *stack, t_node *node);
+void		add_head(t_stack **stack, t_node *node);
+void		add_tail(t_stack **stack, t_node *node);
 int			is_sorted(t_stack *stack);
+void		free_node(t_node *node);
 
 
 //sorting algo
@@ -71,22 +72,22 @@ void		best_move(t_stack *a, t_stack *b);
 void		ultimate_sorter(t_stack **a, t_stack **b);
 
 //input handling
-int			parse_input(int argc, char **argv, t_stack *a, t_stack *b);
-void		fill_stack(t_stack *stack, int argc, char *argv[]);
+int			valid_input(int argc, char **argv, t_stack *stack);
+int			fill_stack(t_stack **stack, long long *holder, int size);
 void		assign_rank(t_stack *stack);
 void		assign_pos(t_stack **a, int size);
-int			is_valid_digit(char *str);
-int			has_dup(t_stack *stack, int value);
-static int	is_valid_arg(char *str, t_stack *a, t_stack *b);
-long		ft_atol_ps(char *str, int *overflow);
+int			is_valid_digit(const char *str);
+int			has_dup(long long *holder, int size);
+static int	is_valid_arg(const char *str, long long *values);
+long		ft_atol_ps(const char *str, int *overflow);
 void 		free_split(char **split);
 
 //utils
 void		free_stack(t_stack **stack);
 void		print_stack(t_stack *stack);
-void		error_exit(const char *msg, t_stack *a, t_stack *b);
+void		clean_exit(const char *msg, t_stack **a, t_stack **b, void *ptr);
 int			ft_isdigit(int c);
-int			is_overflow(char *str);
+int			is_overflow(long long result, int sign);
 
 
 //stack operations

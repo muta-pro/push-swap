@@ -6,7 +6,7 @@
 /*   By: imutavdz <imutavdz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/23 16:20:49 by imutavdz          #+#    #+#             */
-/*   Updated: 2025/04/06 15:34:49 by imutavdz         ###   ########.fr       */
+/*   Updated: 2025/04/09 05:41:57 by imutavdz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "ps.h"
@@ -16,55 +16,81 @@ int	ft_isdigit(int c)
 	return (c > 47 && c < 58);
 }
 
-long	ft_atol_ps(char *str, int *overflow)//atol
+long	ft_atol_ps(const char *str, int *overflow)//atol
 {
 	long long	result;
-	int			i;
 	int			sign;
 
 	result = 0;
 	sign = 1;
-	i = 0;
-	*overflow = 0;
-	if (str[i] == '-')
-		sign = -1;
-	i++;
-	if (!str[i])
-		return (0);
-	while (str[i] >= '0' && str[i] <= '9')
+	*overflow = 0; //the output parameter
+	if (*str == '-')
 	{
-		result = result * 10 + (str[i++] - '0');
-		if (result > INT_MAX || result * sign < INT_MIN)
+		sign = -1;
+		str++;
+	}
+	while (*str)
+	{
+		result = result * 10 + (*str++ - '0');
+		if (is_overflow(result, sign))
 		{
 			*overflow = 1;
-			return (0);
+			return (result);
 		}
 	}
-	if (str[i] != '\0')
-		return (0);
 	return ((long)(result * sign));
 }
 
-int	is_valid_digit(char *str)
+int	is_overflow(long long result, int sign)
+{
+	if (sign == 1 && result > INT_MAX)
+		return (1);
+	else if (sign == -1 && result > (long long)INT_MAX + 1)
+		return (1);
+	return (0);
+}
+
+int	is_valid_digit(const char *str)
 {
 	int	i;
 
 	i = 0;
-	if (str[0] == '-')
+	while (str[i] == '-' || str[i] == '+')
 		i++;
 	if (ft_isdigit(str[i]))
 	{
 		while (str[i])
 		{
 			if (!ft_isdigit(str[i]))
-				return (1);
+				return (0);
 			i++;
 		}
-		return (0);
+		return (1);
 	}
-	return (1);
+	return (0);
 }
 
+int	has_dup(long long *holder, int size)
+{
+	int			i;
+	int			j;
+
+	i = 0;
+	if (!holder)
+		return (0);
+	while (i < size)
+	{
+		j = i + 1;
+		while (j < size)
+		{
+			if (holder[i] == holder[j])
+				return (1);//found
+			j++;
+		}
+		i++;
+	}
+	return (0); //not found
+}
 int	is_sorted(t_stack *stack)
 {
 	t_node	*current;
@@ -78,25 +104,25 @@ int	is_sorted(t_stack *stack)
 			return (0);
 		current = current->next;
 	}
-	return (1);
+	return (1); //is sorted
 }
 
-int	has_dup(t_stack *stack, int value)
-{
-	t_node	*current;
 
-	if (!stack || !stack->head)
-		return (0);
-	current = stack->head;
-	while (current)
-	{
-		if (current->value == value)
-			return (1);
-		current = current->next;
-	}
-	return (0);
-}
+// void	fill_stack(t_stack *stack, int argc, char *argv[])
+// {
+// 	int	i;
+// 	int	value;
+// 	t_node	*node;
 
+// 	i = 1;
+// 	while (i < argc)
+// 	{
+// 		value = atoi(argv[i]);//convert each arg into int
+// 		node = new_node(value);
+// 		add_head(stack, node);
+// 		i++;
+// 	}
+// }
 // int min_value(t_stack *stack)
 // {
 // 	t_node	*current;
@@ -151,22 +177,6 @@ int	has_dup(t_stack *stack, int value)
 // 	return (-1);
 // }
 
-// void	fill_stack(t_stack *stack, int argc, char *argv[])
-// {
-// 	int	i;
-// 	int	value;
-// 	t_node	*node;
-
-// 	i = 1;
-// 	while (i < argc)
-// 	{
-// 		value = atoi(argv[i]);//convert each arg into int
-// 		node = new_node(value);
-// 		add_head(stack, node);
-// 		i++;
-// 	}
-// }
-
 // void	print_stack(t_stack *stack)
 // {
 // 	t_node	*temp;
@@ -179,12 +189,17 @@ int	has_dup(t_stack *stack, int value)
 // 	}
 // 	printf("\n");
 // }
-void error_exit(const char *msg, t_stack *a, t_stack *b)
+
+void	clean_exit(const char *msg, t_stack **a, t_stack **b, void *ptr)
 {
-	write(2, msg, ft_strlen(msg));
+	if (msg)
+		write(2, msg, ft_strlen(msg));
+	if (ptr)
+		free(ptr);
 	if (a)
-		free_stack(&a);
+		free_stack(a);
 	if (b)
-		free_stack(&b);
+		free_stack(b);
 	exit(1);
 }
+

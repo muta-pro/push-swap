@@ -6,7 +6,7 @@
 /*   By: imutavdz <imutavdz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 22:46:15 by imutavdz          #+#    #+#             */
-/*   Updated: 2025/04/06 15:34:44 by imutavdz         ###   ########.fr       */
+/*   Updated: 2025/04/09 01:27:03 by imutavdz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 //print stack should show value + position
@@ -27,12 +27,28 @@
 
 int	main(int argc, char *argv[])
 {
-	t_stack	*a = NULL;
+	t_stack	*a;
+	t_stack	*b;
 
-	if (!parse_input(argc, argv, &a))
-		return (1);
-	assign_pos(&a, a->stack_size);
-	print_stack(a);
+	if (argc < 2)
+		return (0);
+	if (!valid_input(argc, argv))
+		return (error_exit("error\n"));
+	a = init_stack();
+	if (!a)
+		error_exit("Error\n");
+	b = init_stack();
+	if (!b)
+	{
+		error_exit("Error\n");
+		free_stack(&a);
+		free_stack(&b);
+	}
+	fill_stack(&a, argv, argc -1);
+	assign_pos(&a, argc - 1);
+	if (a->stack_size > 0 && !is_sorted(a))
+		ultimate_sorter(&a, &b);
 	free_stack(&a);
+	free_stack(&b);
 	return (0);
 }
