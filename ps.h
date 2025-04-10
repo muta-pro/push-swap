@@ -6,7 +6,7 @@
 /*   By: imutavdz <imutavdz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 21:29:57 by imutavdz          #+#    #+#             */
-/*   Updated: 2025/04/09 05:41:58 by imutavdz         ###   ########.fr       */
+/*   Updated: 2025/04/09 22:52:56 by imutavdz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ typedef struct s_node
 	int				position;
 	struct s_node	*next;
 	struct s_node	*prev;
-}	t_node;//number in the stack, node of the DLL
+}	t_node; //number in the stack, node of the DLL
 
 typedef struct s_stack
 {
@@ -78,7 +78,7 @@ void		assign_rank(t_stack *stack);
 void		assign_pos(t_stack **a, int size);
 int			is_valid_digit(const char *str);
 int			has_dup(long long *holder, int size);
-static int	is_valid_arg(const char *str, long long *values);
+int			is_valid_arg(const char *str, long long *values);
 long		ft_atol_ps(const char *str, int *overflow);
 void 		free_split(char **split);
 

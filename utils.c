@@ -6,7 +6,7 @@
 /*   By: imutavdz <imutavdz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/23 16:20:49 by imutavdz          #+#    #+#             */
-/*   Updated: 2025/04/09 05:41:57 by imutavdz         ###   ########.fr       */
+/*   Updated: 2025/04/09 20:30:56 by imutavdz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "ps.h"
@@ -91,22 +91,22 @@ int	has_dup(long long *holder, int size)
 	}
 	return (0); //not found
 }
-int	is_sorted(t_stack *stack)
-{
-	t_node	*current;
 
-	if (!stack || !stack->head || stack->head == stack->head->next)
-		return (1);
-	current = stack->head;
-	while (current->next)
-	{
-		if (current->value > current->next->value)
-			return (0);
-		current = current->next;
-	}
-	return (1); //is sorted
-}
+// int	is_sorted(t_stack *stack)
+// {
+// 	t_node	*current;
 
+// 	if (!stack || !stack->head || stack->head == stack->head->next)
+// 		return (1);
+// 	current = stack->head;
+// 	while (current->next)
+// 	{
+// 		if (current->value > current->next->value)
+// 			return (0);
+// 		current = current->next;
+// 	}
+// 	return (1); //is sorted
+// }
 
 // void	fill_stack(t_stack *stack, int argc, char *argv[])
 // {
@@ -177,18 +177,21 @@ int	is_sorted(t_stack *stack)
 // 	return (-1);
 // }
 
-// void	print_stack(t_stack *stack)
-// {
-// 	t_node	*temp;
+void	print_stack(t_stack *stack)
+{
+	t_node	*temp;
+	int count;
 
-// 	temp = stack->head;
-// 	while (temp)
-// 	{
-// 		printf("%d \n", temp->value);
-// 		temp = temp->next;
-// 	}
-// 	printf("\n");
-// }
+	temp = stack->head;
+	count = 0;
+	while (count < stack->stack_size)
+	{
+		printf("%d \n", temp->value);
+		temp = temp->next;
+		count++;
+	}
+	printf("\n");
+}
 
 void	clean_exit(const char *msg, t_stack **a, t_stack **b, void *ptr)
 {
@@ -202,4 +205,3 @@ void	clean_exit(const char *msg, t_stack **a, t_stack **b, void *ptr)
 		free_stack(b);
 	exit(1);
 }
-

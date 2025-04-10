@@ -6,7 +6,7 @@
 /*   By: imutavdz <imutavdz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 12:06:25 by imutavdz          #+#    #+#             */
-/*   Updated: 2025/04/09 05:41:51 by imutavdz         ###   ########.fr       */
+/*   Updated: 2025/04/09 22:52:44 by imutavdz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 /*
@@ -19,7 +19,7 @@ handle errors and exit
 */
 #include "ps.h"
 
-static int	is_valid_arg(const char *str, long long *values)
+int	is_valid_arg(const char *str, long long *values)
 {
 	long		output;
 	int			overflow;
