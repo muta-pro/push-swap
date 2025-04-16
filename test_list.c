@@ -6,7 +6,7 @@
 /*   By: imutavdz <imutavdz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 15:32:52 by imutavdz          #+#    #+#             */
-/*   Updated: 2025/04/05 18:43:30 by imutavdz         ###   ########.fr       */
+/*   Updated: 2025/04/12 16:27:48 by imutavdz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "ps.h"
@@ -24,10 +24,12 @@ t_node	*new_node(int value)
 	node->prev = NULL;
 	return (node);
 }
-//we test
-t_stack *init_stack()
+
+t_stack	*init_stack(void)
 {
-	t_stack *stack = malloc(sizeof(t_stack));
+	t_stack	*stack;
+
+	stack = malloc(sizeof(t_stack));
 	if (!stack)
 		return (NULL);
 	stack->head = NULL;
@@ -36,23 +38,24 @@ t_stack *init_stack()
 	return (stack);
 }
 
-void add_head(t_stack *stack, t_node *node)
+void	add_head(t_stack **stack, t_node *node)
 {
-	if (!stack || !node)
-		return;
-	if (!stack->head)
+	if (!stack || !node || !*stack)
+		return ;
+	if (!(*stack)->head)
 	{
-		stack->head = node;
-		stack->tail = node;
+		(*stack)->head = node;
+		(*stack)->tail = node;
 	}
 	else
 	{
-		node->next = stack->head;
-		stack->head->prev = node;
-		stack->head = node;
+		node->next = (*stack)->head;
+		(*stack)->head->prev = node;
+		(*stack)->head = node;
 	}
-	stack->stack_size++;
+	(*stack)->stack_size++;
 }
+
 void	free_node(t_node *node)
 {
 	if (node)
@@ -60,13 +63,13 @@ void	free_node(t_node *node)
 	node = NULL;
 }
 
-void free_stack(t_stack **stack)
+void	free_stack(t_stack **stack)
 {
-	t_node *node;
-	t_node *next_node;
+	t_node	*node;
+	t_node	*next_node;
 
 	if (!stack || !*stack)
-		return;
+		return ;
 	node = (*stack)->head;
 	while (node)
 	{
@@ -95,7 +98,7 @@ int main()
 	printf("value:%d\n", stack->stack_size);
 	printf("_\n");
 
-	add_head(stack, node);
+	add_head(&stack, node);
 	printf("added head\n");
 	printf("value:%p\n", stack->head);
 	printf("value:%p\n", stack->tail);
@@ -114,7 +117,7 @@ int main()
 	printf("value:%p\n", node1);
 	printf("_\n");
 
-	add_head(stack, node1);
+	add_head(&stack, node1);
 	printf("stack values\n");
 	printf("value:%p\n", stack->head);
 	printf("value:%p\n", stack->tail);

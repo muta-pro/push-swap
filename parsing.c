@@ -6,7 +6,7 @@
 /*   By: imutavdz <imutavdz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 12:06:25 by imutavdz          #+#    #+#             */
-/*   Updated: 2025/04/09 22:52:44 by imutavdz         ###   ########.fr       */
+/*   Updated: 2025/04/13 23:43:24 by imutavdz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 /*
@@ -50,7 +50,7 @@ int	fill_stack(t_stack **a, long long *holder, int size)
 	return (1); //success
 }
 
-int	valid_input(int argc, char *argv[], t_stack *a)
+int	valid_input(int argc, char *argv[], t_stack **a)
 {
 	long long	*holder;
 	int			i;
@@ -58,7 +58,7 @@ int	valid_input(int argc, char *argv[], t_stack *a)
 
 	size = argc - 1;
 	i = 1;
-	holder = malloc(sizeof(long long) * size); //?
+	holder = malloc(sizeof(long long) * size);
 	if (!holder)
 		return (0);
 	while (i < argc)
@@ -68,14 +68,42 @@ int	valid_input(int argc, char *argv[], t_stack *a)
 		i++;
 	}
 	if (has_dup(holder, size))
-		clean_exit("Error: has duplicate\n", NULL, NULL, holder);
-	if (!fill_stack(&a, holder, size))
+		clean_exit("Error: has duplicate\n", a, NULL, holder);
+	if (!fill_stack(a, holder, size))
 	{
 		free(holder);
 		return (0);
 	}
 	free (holder);
 	return (1);
+}
+
+void	assign_pos(t_stack *a, int stack_size)
+{
+	int	*arr;
+	int	i = 0;
+	t_node	*nodes = a->head;
+
+	arr = malloc(sizeof(int) * stack_size);
+	if (!arr)
+		return ;
+	move_values(a, arr);
+	sort_arr(arr, stack_size);
+	assign_rank(a, arr, stack_size);
+	printf("sorted array\n");
+	while (i < stack_size)
+	{
+		printf("%d/", arr[i]);
+		i++;
+	}
+	printf("\n");
+	i = 0;
+	while (nodes)
+	{
+		printf("position:%d,\n value:%d\n", nodes->position, nodes->value);
+		nodes = nodes->next;
+	}
+	free(arr);
 }
 
 // int	single_str_parsing(char *str, t_stack *a, t_stack *b)

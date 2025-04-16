@@ -6,7 +6,7 @@
 /*   By: imutavdz <imutavdz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 21:23:55 by imutavdz          #+#    #+#             */
-/*   Updated: 2025/04/05 18:43:08 by imutavdz         ###   ########.fr       */
+/*   Updated: 2025/04/11 23:32:34 by imutavdz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "ps.h"
@@ -22,19 +22,28 @@ void	swap(t_stack **stack)//single stack operations sa sb
 	(*stack)->head->next->value = holder;
 }
 
-void	sa(t_stack *a)
+void	sa(t_stack **a)
 {
+	if (!a || !(*a) || (*a)->stack_size < 2)
+		return ;
+	swap(a);
 	printf("sa\n");
-	swap(&a);
 }
-void	sb(t_stack *b)
+
+void	sb(t_stack **b)
 {
+	if (!b || !(*b) || (*b)->stack_size < 2)
+		return ;
+	swap(b);
 	printf("sb\n");
-	swap(&b);
 }
-void	ss(t_stack *a, t_stack *b)
+
+void	ss(t_stack **a, t_stack **b)
 {
+	if ((!b || !a || !(*b) || !(*a))
+		&& ((*a)->stack_size < 2 || (*b)->stack_size < 2))
+		return ;
+	swap(a);
+	swap(b);
 	printf("ss\n");
-	swap(&a);
-	swap(&b);
 }

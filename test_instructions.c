@@ -6,7 +6,7 @@
 /*   By: imutavdz <imutavdz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 12:32:38 by imutavdz          #+#    #+#             */
-/*   Updated: 2025/04/05 18:43:35 by imutavdz         ###   ########.fr       */
+/*   Updated: 2025/04/12 00:05:44 by imutavdz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,10 @@ int main(int argc, char *argv[])
 	t_stack *a, *b;
 	a = init_stack();
 	b = init_stack();
-	fill_stack(a, argc, argv);
-	fill_stack(b, argc, argv);
+	fill_stack(&a, argc, argv);
+	fill_stack(&b, argc, argv);
 
-	rrr(a, b);
+	rrr(&a, &b);
 	printf("A\n");
 	print_stack(a);
 	printf("B\n");

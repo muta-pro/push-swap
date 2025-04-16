@@ -6,11 +6,11 @@
 /*   By: imutavdz <imutavdz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 15:38:01 by imutavdz          #+#    #+#             */
-/*   Updated: 2025/04/09 20:49:46 by imutavdz         ###   ########.fr       */
+/*   Updated: 2025/04/11 16:40:01 by imutavdz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "ps.h"
-//circular doubly linked list
+//doubly linked list
 
 t_node	*new_node(int value)
 {
@@ -61,72 +61,4 @@ t_stack	*init_stack(void)
 	stack->tail = NULL;
 	stack->stack_size = 0;
 	return (stack);
-}
-
-void	add_head(t_stack **stack, t_node *node)
-{
-	if (!stack || !node || !*stack) //if node is null
-		return ;
-	if (!(*stack)->head)//empty list
-	{
-		(*stack)->head = node;
-		(*stack)->tail = node;
-		node->prev = node;
-		node->next = node;
-	}
-	else
-	{
-		node->next = (*stack)->head;//new A node points next to B
-		node->prev = (*stack)->tail;
-		(*stack)->head->prev = node;//prev pointer of B points to A node
-		(*stack)->tail->next = node;
-		(*stack)->head = node;//head pointer points to A node
-	}
-	(*stack)->stack_size++;
-}
-
-void	add_tail(t_stack **stack, t_node *node)
-{
-	if (!stack || !node || !*stack)
-		return ;
-	if (!(*stack)->tail)
-	{
-		(*stack)->tail = node;
-		(*stack)->head = node;
-		node->next = node;
-		node->prev = node;
-	}
-	else
-	{
-		node->next = (*stack)->head; // new node A next points to head
-		node->prev = (*stack)->tail; //new node A prev points to B
-		(*stack)->tail->next = node; //pointing next B to node A
-		(*stack)->head->prev = node;
-		(*stack)->tail = node;
-	}
-	(*stack)->stack_size++;
-}
-
-t_node	*remove_head(t_stack *stack)
-{
-	t_node	*holder;
-
-	if (!stack || !stack->head)
-		return (NULL);
-	holder = stack->head;
-	if (stack->head == stack->tail)
-	{
-		stack->head = NULL;
-		stack->tail = NULL;
-	}
-	else
-	{
-		stack->head = stack->head->next;
-		if (stack->head)
-			stack->head->prev = NULL;
-	}
-	holder->next = NULL;
-	holder->prev = NULL;
-	stack->stack_size--;
-	return (holder);
 }
