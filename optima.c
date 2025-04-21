@@ -6,7 +6,7 @@
 /*   By: imutavdz <imutavdz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 16:04:03 by imutavdz          #+#    #+#             */
-/*   Updated: 2025/04/17 01:52:25 by imutavdz         ###   ########.fr       */
+/*   Updated: 2025/04/20 19:36:20 by imutavdz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "ps.h"
@@ -85,20 +85,20 @@ int	min_value(t_stack *stack)
 	return (min_rank);
 }
 
-int max_value(t_stack *stack)
-{
-	t_node *current;
-	int max;
+// int	max_value(t_stack *stack)
+// {
+// 	t_node	*current;
+// 	int		max;
 
-	if (!stack->head)
-		return (0);
-	current = stack->head;
-	max = current->value;
-	while (current)
-	{
-		if (current->value > max)
-			max = current->value;
-			current = current->next;
-	}
-	return (max);
-}
+// 	if (!stack->head)
+// 		return (0);
+// 	current = stack->head;
+// 	max = current->value;
+// 	while (current)
+// 	{
+// 		if (current->value > max)
+// 			max = current->value;
+// 		current = current->next;
+// 	}
+// 	return (max);
+// }

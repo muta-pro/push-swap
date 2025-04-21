@@ -6,7 +6,7 @@
 /*   By: imutavdz <imutavdz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 21:29:57 by imutavdz          #+#    #+#             */
-/*   Updated: 2025/04/17 01:52:24 by imutavdz         ###   ########.fr       */
+/*   Updated: 2025/04/21 22:36:19 by imutavdz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,17 +64,18 @@ void		chunk_to_b(t_stack **a, t_stack **b, int start_pos, int end_pos);
 void		back_to_a(t_stack **a, t_stack **b);
 void		ultimate_sorter(t_stack **a, t_stack **b);
 void		sort_arr(int *arr, int stack_size);
+void		recurs_sort_arr(int *arr, int low, int high);
 // void 		limit_fivehynderet_chunking(t_stack **a, t_stack **b);
 // void 		limit_hundert_chunking(t_stack **a, t_stack **b);
 // void		hybrid_radix_chunk(t_stack **a, t_stack **b, int chunk_size);
 
 //optimization
-int			find_target(int position_b, t_stack *a, int size);
-t_cost		find_cheapest(t_stack **a, t_stack **b);
-void		best_move(t_stack *a, t_stack *b);
-int 		calc_cost(t_stack *a, t_stack *b, int position);
+int			find_target(int position_b, t_stack *a, int size);/////////
+t_cost		find_cheapest(t_stack **a, t_stack **b);///////////
+void		best_move(t_stack *a, t_stack *b);////////////
+int 		calc_cost(t_stack *a, t_stack *b, int position);/////////////
 int 		min_value(t_stack *stack);
-int			max_value(t_stack *stack);
+int			max_value(t_stack *stack);////////////
 int			count_chunked(t_stack *a, int start, int end);
 int			find_t_distance(t_stack *a, int start_pos, int end_pos);
 int			find_b_distance(t_stack *a, int start_pos, int end_pos);
@@ -89,12 +90,11 @@ int			is_valid_digit(const char *str);
 int			has_dup(long long *holder, int size);
 int			is_valid_arg(const char *str, long long *values);
 long		ft_atol_ps(const char *str, int *overflow);
-void		recurs_sort_arr(int *arr, int low, int high);
 
 //utils
 void		free_stack(t_stack **stack);
-void		print_stack(t_stack *stack);
 void		clean_exit(const char *msg, t_stack **a, t_stack **b, void *ptr);
+void		print_stack(t_stack *stack);
 int			ft_isdigit(int c);
 int			is_overflow(long long result, int sign);
 void		move_values(t_stack *a, int *arr);
@@ -122,11 +122,5 @@ void		rr(t_stack **a, t_stack **b);
 void		rra(t_stack **a);
 void		rrb(t_stack **b);
 void		rrr(t_stack **a, t_stack **b);
-
-//tests^^
-//cost calculating functions of moving elements betwwen stacks-greedy
-//position tracking functions-at input?
-//algorithm selecion logic criteria based on input size
-//stack visualization/debugging helpers
 
 #endif

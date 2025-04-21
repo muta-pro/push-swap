@@ -6,7 +6,7 @@
 /*   By: imutavdz <imutavdz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/22 23:28:19 by imutavdz          #+#    #+#             */
-/*   Updated: 2025/04/15 20:52:07 by imutavdz         ###   ########.fr       */
+/*   Updated: 2025/04/21 21:59:08 by imutavdz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "ps.h"
@@ -28,10 +28,10 @@ void	ultimate_sorter(t_stack **a, t_stack **b)
 		else if ((*a)->stack_size > 5)
 			chunk_sort(a, b, (*a)->stack_size);
 		else
-			clean_exit("relax, too many args\n", a, b, NULL);
+			clean_exit("Error\n", a, b, NULL);
 	}
 	else
-		clean_exit("relax, already sorted\n", a, b, NULL);
+		clean_exit("Error is sorted\n", a, b, NULL);
 }
 
 int	main(int argc, char *argv[])

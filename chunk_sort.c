@@ -6,11 +6,10 @@
 /*   By: imutavdz <imutavdz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/23 16:21:36 by imutavdz          #+#    #+#             */
-/*   Updated: 2025/04/17 01:52:27 by imutavdz         ###   ########.fr       */
+/*   Updated: 2025/04/21 22:39:29 by imutavdz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "ps.h"
-//divide input into parts, push and sort smaller chunks efficiently
 //optimize rotations and push operations
 //split stack A into partitions
 //chunk_size based on input size
@@ -39,7 +38,7 @@ int	get_chunkcount(int stack_size)
 
 void	chunk_to_b(t_stack **a, t_stack **b, int start_pos, int end_pos)
 {
-	int	chunksize;
+	int	chunk_size;
 	int	top_dist;
 	int	bottom_dist;
 //find_cheapest to move funciotn
@@ -57,12 +56,14 @@ void	chunk_to_b(t_stack **a, t_stack **b, int start_pos, int end_pos)
 		while (bottom_dist-- > 0)
 			rra(a);
 	}
-	chunksize = end_pos - start_pos;
+	chunk_size = end_pos - start_pos;
 	pb(b, a);
-	if ((*b)->head->position < start_pos + chunksize / 2)
+	if ((*b)->head->position < start_pos + chunk_size / 2)
 		rb(b);
 }
 
+//count how many elem are processing in this range
+//pointer to loop through stack
 int	count_chunked(t_stack *a, int chunk_start, int chunk_end)
 {
 	t_node	*current;
@@ -79,36 +80,35 @@ int	count_chunked(t_stack *a, int chunk_start, int chunk_end)
 	return (count);
 }
 
-void back_to_a(t_stack *a, t_stack *b)
+//use target position in A do determine optimal positoin
+//calc combined costs for both stacks
+void	back_to_a(t_stack **a, t_stack **b)
 {
 	best_move(find_cheapest(calc_cost()));
 	rr();rrr();rb();ra();
 	pa();
 
-	//pushing back elemets that require fewest moves
-	//use target position in A do determine optimal positoin
-	//calc combined costs for both stacks
 }
 
 void	chunk_sort(t_stack **a, t_stack **b, int stack_size)
 {
-	int		chunksize;
+	int		chunk_size;
 	int		chunkcount;
 	int		chunk_start;
 	int		chunk_end;
 
-	chunkcount = get_chunkcount(stack_size);
-	chunksize = stack_size / chunkcount;
-	chunk_start = 0;
-	chunk_end = chunksize - 1;
+	chunkcount = get_chunkcount(stack_size); //how many chunks we need
+	chunk_size = stack_size / chunkcount; //how many elements are there
+	chunk_start = 0; //range of first chunk
+	chunk_end = chunk_size - 1;
 	while ((*a)->stack_size > 3)
 	{
 		chunk_to_b(a, b, chunk_start, chunk_end);
-		if (count_chunked(*a, chunk_start, chunk_end) == 0)
+		if (count_chunked(*a, chunk_start, chunk_end) == 0) //no elements left in range
 		{
-			chunk_start += chunksize;
-			chunk_end += chunksize;
-			if (chunk_end >= stack_size)
+			chunk_start += chunk_size; //here we move to the next chunk
+			chunk_end += chunk_size;
+			if (chunk_end >= stack_size) //not going over limit size
 				chunk_end = stack_size - 1;
 		}
 	}
@@ -116,11 +116,3 @@ void	chunk_sort(t_stack **a, t_stack **b, int stack_size)
 		three_sort(*a);
 	back_to_a(a, b);
 }
-
-// void	hundert_chunking(t_stack **a, t_stack **b)
-// {
-
-// }
-// void	fivehunderet_chunking(t_stack **a, t_stack **b);
-
-// void	chunk_to_a(t_stack **a, t_stack **b, int chunksize);

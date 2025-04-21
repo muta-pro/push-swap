@@ -6,7 +6,7 @@
 /*   By: imutavdz <imutavdz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 12:06:25 by imutavdz          #+#    #+#             */
-/*   Updated: 2025/04/13 23:43:24 by imutavdz         ###   ########.fr       */
+/*   Updated: 2025/04/21 21:57:00 by imutavdz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 /*
@@ -25,10 +25,10 @@ int	is_valid_arg(const char *str, long long *values)
 	int			overflow;
 
 	if (!is_valid_digit(str))
-		clean_exit("Error: invalid digit\n", NULL, NULL, NULL);
+		clean_exit("Error\n", NULL, NULL, NULL);
 	output = ft_atol_ps(str, &overflow);
 	if (overflow)
-		clean_exit("Error: overflow\n", NULL, NULL, NULL);
+		clean_exit("Error\n", NULL, NULL, NULL);
 	*values = output;
 	return (1); //success
 }
@@ -68,7 +68,7 @@ int	valid_input(int argc, char *argv[], t_stack **a)
 		i++;
 	}
 	if (has_dup(holder, size))
-		clean_exit("Error: has duplicate\n", a, NULL, holder);
+		clean_exit("Error\n", a, NULL, holder);
 	if (!fill_stack(a, holder, size))
 	{
 		free(holder);
@@ -80,17 +80,18 @@ int	valid_input(int argc, char *argv[], t_stack **a)
 
 void	assign_pos(t_stack *a, int stack_size)
 {
-	int	*arr;
-	int	i = 0;
-	t_node	*nodes = a->head;
+	int		*arr;
+	int		i;
+	t_node	*nodes;
 
+	nodes = a->head;
+	i = 0;
 	arr = malloc(sizeof(int) * stack_size);
 	if (!arr)
 		return ;
 	move_values(a, arr);
 	sort_arr(arr, stack_size);
 	assign_rank(a, arr, stack_size);
-	printf("sorted array\n");
 	while (i < stack_size)
 	{
 		printf("%d/", arr[i]);
