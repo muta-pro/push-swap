@@ -6,7 +6,7 @@
 /*   By: imutavdz <imutavdz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 21:53:06 by imutavdz          #+#    #+#             */
-/*   Updated: 2025/04/12 00:01:42 by imutavdz         ###   ########.fr       */
+/*   Updated: 2025/04/24 16:02:26 by imutavdz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "ps.h"
@@ -24,7 +24,7 @@ void	rra(t_stack **a)
 	if (!a || !(*a) || (*a)->stack_size < 2)
 		return ;
 	rot_down(a);
-	printf("rra\n");
+	ft_putendl_fd("rra", 1);
 }
 
 void	rrb(t_stack **b)
@@ -32,7 +32,7 @@ void	rrb(t_stack **b)
 	if (!b || !(*b) || (*b)->stack_size < 2)
 		return ;
 	rot_down(b);
-	printf("rrb\n");
+	ft_putendl_fd("rrb", 1);
 }
 
 void	rrr(t_stack **a, t_stack **b)
@@ -42,7 +42,7 @@ void	rrr(t_stack **a, t_stack **b)
 		return ;
 	rot_down(a);
 	rot_down(b);
-	printf("rrr\n");
+	ft_putendl_fd("rrr", 1);
 }
 
 // void	rot_down(t_stack **stack)// reverse rotate rra rrb rrr

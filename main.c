@@ -6,7 +6,7 @@
 /*   By: imutavdz <imutavdz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/22 23:28:19 by imutavdz          #+#    #+#             */
-/*   Updated: 2025/04/21 21:59:08 by imutavdz         ###   ########.fr       */
+/*   Updated: 2025/04/24 20:56:58 by imutavdz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "ps.h"
@@ -31,7 +31,7 @@ void	ultimate_sorter(t_stack **a, t_stack **b)
 			clean_exit("Error\n", a, b, NULL);
 	}
 	else
-		clean_exit("Error is sorted\n", a, b, NULL);
+		clean_exit("Error\n", a, b, NULL);
 }
 
 int	main(int argc, char *argv[])
@@ -51,9 +51,7 @@ int	main(int argc, char *argv[])
 		clean_exit("Error\n", &a, NULL, NULL);
 	assign_pos(a, a->stack_size);
 	ultimate_sorter(&a, &b);
-	print_stack(a);
-	printf("stack B\n");
-	print_stack(b);
+	// print_stack(a);
 	free_stack(&a);
 	free_stack(&b);
 	return (0);

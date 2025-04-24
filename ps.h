@@ -6,7 +6,7 @@
 /*   By: imutavdz <imutavdz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 21:29:57 by imutavdz          #+#    #+#             */
-/*   Updated: 2025/04/21 22:36:19 by imutavdz         ###   ########.fr       */
+/*   Updated: 2025/04/24 20:56:53 by imutavdz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,14 +36,14 @@ typedef struct s_stack
 
 typedef struct s_cost
 {
-	int	cost_a;
-	int	cost_b;
+	int	cost_a;  // Moves to bring element to top of A
+	int	cost_b; // Moves to rotate B correctly for insert
 	int	totalcost;
-	int	position_b;
+	int	pos_to_pb; // The position of the element we want to push from A
 	int	target_a;
 }	t_cost;
 
-//stack init and manageent
+//stack init and managent
 t_stack		*init_stack(void);
 t_node		*new_node(int value);
 t_node		*remove_head(t_stack *stack);
@@ -65,20 +65,22 @@ void		back_to_a(t_stack **a, t_stack **b);
 void		ultimate_sorter(t_stack **a, t_stack **b);
 void		sort_arr(int *arr, int stack_size);
 void		recurs_sort_arr(int *arr, int low, int high);
-// void 		limit_fivehynderet_chunking(t_stack **a, t_stack **b);
-// void 		limit_hundert_chunking(t_stack **a, t_stack **b);
-// void		hybrid_radix_chunk(t_stack **a, t_stack **b, int chunk_size);
+void		do_rr(t_stack **a, t_stack **b, int *cost_a, int *cost_b);
+void		do_rrr(t_stack **a, t_stack **b, int *cost_a, int *cost_b);
 
 //optimization
-int			find_target(int position_b, t_stack *a, int size);/////////
-t_cost		find_cheapest(t_stack **a, t_stack **b);///////////
-void		best_move(t_stack *a, t_stack *b);////////////
-int 		calc_cost(t_stack *a, t_stack *b, int position);/////////////
-int 		min_value(t_stack *stack);
-int			max_value(t_stack *stack);////////////
 int			count_chunked(t_stack *a, int start, int end);
-int			find_t_distance(t_stack *a, int start_pos, int end_pos);
-int			find_b_distance(t_stack *a, int start_pos, int end_pos);
+t_cost		find_cheapest(t_stack **a, t_stack **b, int start_pos, int end_pos);
+int			find_target_b(int position_b, t_stack *b);
+int 		min_value(t_stack *stack);
+int 		max_value(t_stack *stack);
+int 		calc_cost_total(int cost_a, int cost_b);
+int			calc_cost_to_top(t_stack *a, int position);
+int			calc_cost_top_target(t_stack *b, int target);
+int 		position_target(t_stack *stack, int target);
+void		best_move(t_stack **a, t_stack **b, t_cost cheapest);
+void		best_move_b(t_stack **b, int cost_b);
+void		best_move_a(t_stack **a, int cost_a);
 
 
 //input handling
@@ -108,7 +110,6 @@ void		push(t_stack **src, t_stack **dest);
 void		swap(t_stack **stack);
 void		rot_up(t_stack **stack);
 void		rot_down(t_stack **stack);
-// void		split_stack(t_stack *stack);//into smaller chunks - if <10 <100 <500
 
 //operations specific
 void		sa(t_stack **a);

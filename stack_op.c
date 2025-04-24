@@ -6,7 +6,7 @@
 /*   By: imutavdz <imutavdz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 15:28:13 by imutavdz          #+#    #+#             */
-/*   Updated: 2025/04/11 21:57:46 by imutavdz         ###   ########.fr       */
+/*   Updated: 2025/04/24 20:06:01 by imutavdz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "ps.h"
@@ -94,4 +94,17 @@ void	add_tail(t_stack **stack, t_node *node)
 		(*stack)->tail = node;
 	}
 	(*stack)->stack_size++;
+}
+
+void	clean_exit(const char *msg, t_stack **a, t_stack **b, void *ptr)
+{
+	if (msg)
+		write(2, msg, ft_strlen(msg));
+	if (ptr)
+		free(ptr);
+	if (a)
+		free_stack(a);
+	if (b)
+		free_stack(b);
+	exit(1);
 }

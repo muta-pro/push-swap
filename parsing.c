@@ -6,7 +6,7 @@
 /*   By: imutavdz <imutavdz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 12:06:25 by imutavdz          #+#    #+#             */
-/*   Updated: 2025/04/21 21:57:00 by imutavdz         ###   ########.fr       */
+/*   Updated: 2025/04/24 18:44:58 by imutavdz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 /*
@@ -48,6 +48,28 @@ int	fill_stack(t_stack **a, long long *holder, int size)
 		i++;
 	}
 	return (1); //success
+}
+
+int	has_dup(long long *holder, int size)
+{
+	int			i;
+	int			j;
+
+	i = 0;
+	if (!holder)
+		return (0);
+	while (i < size)
+	{
+		j = i + 1;
+		while (j < size)
+		{
+			if (holder[i] == holder[j])
+				return (1);//found
+			j++;
+		}
+		i++;
+	}
+	return (0); //not found
 }
 
 int	valid_input(int argc, char *argv[], t_stack **a)

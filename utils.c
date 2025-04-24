@@ -6,7 +6,7 @@
 /*   By: imutavdz <imutavdz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/23 16:20:49 by imutavdz          #+#    #+#             */
-/*   Updated: 2025/04/18 17:16:44 by imutavdz         ###   ########.fr       */
+/*   Updated: 2025/04/24 20:05:12 by imutavdz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "ps.h"
@@ -70,28 +70,6 @@ int	is_valid_digit(const char *str)
 	return (0);
 }
 
-int	has_dup(long long *holder, int size)
-{
-	int			i;
-	int			j;
-
-	i = 0;
-	if (!holder)
-		return (0);
-	while (i < size)
-	{
-		j = i + 1;
-		while (j < size)
-		{
-			if (holder[i] == holder[j])
-				return (1);//found
-			j++;
-		}
-		i++;
-	}
-	return (0); //not found
-}
-
 int	is_sorted(t_stack *stack)
 {
 	t_node	*current;
@@ -107,32 +85,18 @@ int	is_sorted(t_stack *stack)
 	}
 	return (1); //is sorted
 }
+// void	print_stack(t_stack *stack)
+// {
+// 	t_node	*temp;
+// 	int		count;
 
-void	print_stack(t_stack *stack)
-{
-	t_node	*temp;
-	int		count;
-
-	temp = stack->head;
-	count = 0;
-	while (count < stack->stack_size)
-	{
-		printf("%d \n", temp->value);
-		temp = temp->next;
-		count++;
-	}
-	printf("\n");
-}
-
-void	clean_exit(const char *msg, t_stack **a, t_stack **b, void *ptr)
-{
-	if (msg)
-		write(2, msg, ft_strlen(msg));
-	if (ptr)
-		free(ptr);
-	if (a)
-		free_stack(a);
-	if (b)
-		free_stack(b);
-	exit(1);
-}
+// 	temp = stack->head;
+// 	count = 0;
+// 	while (count < stack->stack_size)
+// 	{
+// 		printf("%d \n", temp->value);
+// 		temp = temp->next;
+// 		count++;
+// 	}
+// 	printf("\n");
+// }

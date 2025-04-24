@@ -6,12 +6,12 @@
 #    By: imutavdz <imutavdz@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/31 13:14:48 by imutavdz          #+#    #+#              #
-#    Updated: 2025/01/30 19:39:22 by imutavdz         ###   ########.fr        #
+#    Updated: 2025/04/24 16:09:31 by imutavdz         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -fPIC
 NAME = libft.a
 CORE_DIR = CORE
 H_FILES = headers
@@ -31,7 +31,7 @@ ft_lstadd_back_bonus.c ft_lstadd_front_bonus.c \
 ft_lstclear_bonus.c ft_lstdelone_bonus.c \
 ft_lstiter_bonus.c ft_lstlast_bonus.c \
 ft_lstmap_bonus.c ft_lstnew_bonus.c \
-ft_lstsize_bonus.c ft_base16.c ft_printf.c ft_printf_utils.c \
+ft_lstsize_bonus.c ft_base16.c \
 get_next_line.c get_next_line_utils.c
 HDR = libft.h
 INCLUDE = -I$(H_FILES)

@@ -6,7 +6,7 @@
 /*   By: imutavdz <imutavdz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/23 16:21:36 by imutavdz          #+#    #+#             */
-/*   Updated: 2025/04/21 22:39:29 by imutavdz         ###   ########.fr       */
+/*   Updated: 2025/04/24 20:20:36 by imutavdz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "ps.h"
@@ -15,10 +15,7 @@
 //chunk_size based on input size
 //move each to stack B
 //finding shortest path to reach elements
-//sort_chunks insert_sort or select_sort
 //merge stack pushing to stack A
-//hybrid strategy - prepocessing step
-//user  radix on final pass
 //count comparisons try to minimize - choose algo
 //alg complexity should match problems lower bound
 //stack sorting - greedy sort, binary insert sort, divide&concq
@@ -36,30 +33,21 @@ int	get_chunkcount(int stack_size)
 		return (11);
 }
 
+//Analyzes all elements in the current chunk.
+//calc total cost A and B
+//calc distance from the top before pushing
+//find_cheapest to move funciotn
+//best element based on rotation cost
+//minimum movement execution
 void	chunk_to_b(t_stack **a, t_stack **b, int start_pos, int end_pos)
 {
-	int	chunk_size;
-	int	top_dist;
-	int	bottom_dist;
-//find_cheapest to move funciotn
-	top_dist = find_t_distance(*a, start_pos, end_pos);
-	bottom_dist = find_b_distance(*a, start_pos, end_pos);
-	if (top_dist == -1 && bottom_dist == -1)
-		return ;
-	if ((top_dist != -1 && top_dist <= bottom_dist) || bottom_dist == -1)
+	t_cost	cheapest;
+
+	while (count_chunked(*a, start_pos, end_pos) > 0)
 	{
-		while (top_dist-- > 0)
-			ra(a);
+		cheapest = find_cheapest(a, b, start_pos, end_pos);
+		best_move(a, b, cheapest);
 	}
-	else
-	{
-		while (bottom_dist-- > 0)
-			rra(a);
-	}
-	chunk_size = end_pos - start_pos;
-	pb(b, a);
-	if ((*b)->head->position < start_pos + chunk_size / 2)
-		rb(b);
 }
 
 //count how many elem are processing in this range
@@ -84,10 +72,21 @@ int	count_chunked(t_stack *a, int chunk_start, int chunk_end)
 //calc combined costs for both stacks
 void	back_to_a(t_stack **a, t_stack **b)
 {
-	best_move(find_cheapest(calc_cost()));
-	rr();rrr();rb();ra();
-	pa();
+	int	b_size;
+	int	pos;
+	int	cost_b;
 
+	while ((*b)->head != NULL) //while B not empty
+	{
+		b_size = (*b)->stack_size;
+		pos = max_value(*b);
+		if (pos <= b_size / 2)
+			cost_b = pos;
+		else
+			cost_b = -(b_size - pos);
+		best_move_b(b, cost_b);
+		pa(a, b);
+	}
 }
 
 void	chunk_sort(t_stack **a, t_stack **b, int stack_size)
@@ -114,5 +113,6 @@ void	chunk_sort(t_stack **a, t_stack **b, int stack_size)
 	}
 	if ((*a)->stack_size == 3)
 		three_sort(*a);
+	ft_putendl_fd("--- ENTERING back_to_a ---", 1);
 	back_to_a(a, b);
 }
