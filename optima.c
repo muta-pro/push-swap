@@ -6,42 +6,47 @@
 /*   By: imutavdz <imutavdz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 16:04:03 by imutavdz          #+#    #+#             */
-/*   Updated: 2025/04/24 20:56:52 by imutavdz         ###   ########.fr       */
+/*   Updated: 2025/04/26 00:28:17 by imutavdz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "ps.h"
 /*
-dist counts how many steps we've moved from the top.
-It only returns when a node is in range.
-it counts how many nodes we passed before hitting one in range
+/calc how many steps we are away from the top to prepare the target
+/approach in insertion based sorting alg
+finds index in B what should be a the top before pushing to B
+return index of B that should be rotatet
 */
-//calc how many steps we are away from the top to prepare the target
-//approach in insertion based sorting alg
 int	find_target_b(int position_to_pb, t_stack *b)
 {
-	t_node	*curr;
+	t_node	*curr_b;
 	int		target;
-	int		min_pos; //tracks smalles pos value
-	int		max_pos; //track largerst
+	int		min_pos;
+	int		max_pos;
+	int		index;
 
-	curr = b->head;
+	if (!b || !b->head)
+		return (0);
+	curr_b = b->head;
 	target = -1; //means not found yet ??
-	min_pos = INT_MAX;
-	max_pos = INT_MIN;
-	while (curr)
+	min_pos = INT_MIN;
+	max_pos = max_value(b);
+	index = 0;
+	while (curr_b)
 	{
-		if (curr->position > position_to_pb
-			&& (target == -1 || curr->position < target))
-			target = curr->position;
-		if (curr->position > max_pos)
-			max_pos = curr->position;
-		if (curr -> position < min_pos)
-			min_pos = curr->position;
-		curr = curr->next;
+		if (curr_b->position < position_to_pb)
+		{
+			if (curr_b->position > min_pos)
+			{
+				min_pos = curr_b->position;
+				target = index;
+			}
+		}
+		curr_b = curr_b->next;
+		index++;
 	}
 	if (target == -1)
-		target = min_pos;
-	return (position_target(a, target));
+		target = max_pos;
+	return (target);
 }
 
 int	position_target(t_stack *stack, int target)

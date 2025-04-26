@@ -6,7 +6,7 @@
 /*   By: imutavdz <imutavdz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 23:30:23 by imutavdz          #+#    #+#             */
-/*   Updated: 2025/04/24 20:56:55 by imutavdz         ###   ########.fr       */
+/*   Updated: 2025/04/26 02:54:56 by imutavdz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "ps.h"
@@ -37,22 +37,12 @@ int	calc_cost_to_top(t_stack *a, int position)
 	return (cost);
 }
 
-int	calc_cost_top_target(t_stack *b, int target_pos)
+int	calc_cost_top_target(t_stack *b, int target_index)
 {
-	t_node	*curr;
-	int		index;
-
-	curr = b->head;
-	index = 0;
-	while (curr && curr->position != target_pos)
-	{
-		curr = curr->next;
-		index++;
-	}
-	if (index <= b->stack_size / 2)
-		return (index); //rb
+	if (target_index <= b->stack_size / 2)
+		return (target_index); //rb
 	else
-		return (-(b->stack_size - index)); //rrb
+		return (-(b->stack_size - target_index)); //rrb
 }
 
 int	calc_cost_total(int cost_a, int cost_b)
@@ -85,31 +75,35 @@ int	calc_cost_total(int cost_a, int cost_b)
 //how much cost rotate A and B
 //combine cost
 //track cheapest
-t_cost	find_cheapest(t_stack **a, t_stack **b, int start_pos, int end_pos)
+void	calculator(t_stack *a, t_stack *b, t_node *node_a, t_cost *costs)
 {
-	t_node	*curr;
+	costs->target_a = find_target_b(node_a->position, b);
+	costs->cost_a = calc_cost_to_top(a, node_a->position);
+	costs->cost_b = calc_cost_top_target(b, costs->target_a);
+	costs->totalcost = calc_cost_total(costs->cost_a, costs->cost_b);
+}
+
+t_cost	find_cheapest(t_stack **a, t_stack **b)
+{
+	t_node	*curr_a;
 	t_cost	cheapest;
 	t_cost	temp;
 	int		best_tot;
+	int		found;
 
+	found = 0;
 	best_tot = INT_MAX;
-	curr = (*a)->head;
-	while (curr)
+	curr_a = (*a)->head;
+	while (curr_a != NULL)
 	{
-		if (curr->position >= start_pos && curr->position <= end_pos)
+		calculator(*a, *b, curr_a, &temp);
+		if (!found || temp.totalcost < best_tot)
 		{
-			temp.pos_to_pb = curr->position;
-			temp.target_a = find_target_pos(curr->position, *b);
-			temp.cost_a = calc_cost_to_top(*a, curr->position);
-			temp.cost_b = calc_cost_top_target(*b, temp.target_a);
-			temp.totalcost = calc_cost_total(temp.cost_a, temp.cost_b);
-			if (temp.totalcost < best_tot)
-			{
-				best_tot = temp.totalcost;
-				cheapest = temp;
-			}
+			best_tot = temp.totalcost;
+			cheapest = temp;
+			found = 1;
 		}
-		curr = curr->next;
+		curr_a = curr_a->next;
 	}
 	return (cheapest); //the best move we found so far
 }

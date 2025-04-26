@@ -6,7 +6,7 @@
 /*   By: imutavdz <imutavdz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 21:29:57 by imutavdz          #+#    #+#             */
-/*   Updated: 2025/04/24 20:56:53 by imutavdz         ###   ########.fr       */
+/*   Updated: 2025/04/26 03:19:09 by imutavdz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <stdlib.h>
 # include <stdio.h>
 # include <limits.h>
+#include <stdbool.h>
 # include "libft.h"
 
 typedef struct s_node
@@ -59,7 +60,7 @@ void		minisort(t_stack *a, t_stack *b, int size);
 void		three_sort(t_stack *a);
 void		four_sort(t_stack **a, t_stack **b);
 void		five_sort(t_stack **a, t_stack **b);
-void		chunk_sort(t_stack **a, t_stack **b, int chunk_size);
+void		greedy_sort(t_stack **a, t_stack **b);
 void		chunk_to_b(t_stack **a, t_stack **b, int start_pos, int end_pos);
 void		back_to_a(t_stack **a, t_stack **b);
 void		ultimate_sorter(t_stack **a, t_stack **b);
@@ -70,13 +71,14 @@ void		do_rrr(t_stack **a, t_stack **b, int *cost_a, int *cost_b);
 
 //optimization
 int			count_chunked(t_stack *a, int start, int end);
-t_cost		find_cheapest(t_stack **a, t_stack **b, int start_pos, int end_pos);
+t_cost		find_cheapest(t_stack **a, t_stack **b);
 int			find_target_b(int position_b, t_stack *b);
 int 		min_value(t_stack *stack);
 int 		max_value(t_stack *stack);
 int 		calc_cost_total(int cost_a, int cost_b);
 int			calc_cost_to_top(t_stack *a, int position);
 int			calc_cost_top_target(t_stack *b, int target);
+void		calculator(t_stack *a, t_stack *b, t_node *node_a, t_cost *costs);
 int 		position_target(t_stack *stack, int target);
 void		best_move(t_stack **a, t_stack **b, t_cost cheapest);
 void		best_move_b(t_stack **b, int cost_b);
@@ -103,6 +105,7 @@ void		move_values(t_stack *a, int *arr);
 void		ft_swap(int *a, int *b);
 int			bisearch(int *arr, int stack_size, int target);
 int			partition(int *arr, int low, int high);
+size_t		get_move_count(bool increment);
 
 
 //stack operations

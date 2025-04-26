@@ -6,7 +6,7 @@
 /*   By: imutavdz <imutavdz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/23 16:20:49 by imutavdz          #+#    #+#             */
-/*   Updated: 2025/04/24 20:05:12 by imutavdz         ###   ########.fr       */
+/*   Updated: 2025/04/26 01:33:13 by imutavdz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "ps.h"
@@ -85,6 +85,24 @@ int	is_sorted(t_stack *stack)
 	}
 	return (1); //is sorted
 }
+
+#include <stdbool.h> // You might need this include
+
+/**
+ * @brief Gets or increments the global move count.
+ * @param increment If true, increments the count before returning.
+ * @return The current (or new) move count.
+ */
+size_t	get_move_count(bool increment)
+{
+	static size_t	move_count = 0; // Static variable persists
+	if (increment)
+	{
+		move_count++;
+	}
+	return (move_count);
+}
+
 // void	print_stack(t_stack *stack)
 // {
 // 	t_node	*temp;
