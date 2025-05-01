@@ -6,7 +6,7 @@
 /*   By: imutavdz <imutavdz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 21:29:57 by imutavdz          #+#    #+#             */
-/*   Updated: 2025/04/26 03:19:09 by imutavdz         ###   ########.fr       */
+/*   Updated: 2025/05/01 18:47:19 by imutavdz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ void		sort_arr(int *arr, int stack_size);
 void		recurs_sort_arr(int *arr, int low, int high);
 void		do_rr(t_stack **a, t_stack **b, int *cost_a, int *cost_b);
 void		do_rrr(t_stack **a, t_stack **b, int *cost_a, int *cost_b);
+void	chunk_sort(t_stack **a, t_stack **b, int stack_size);
 
 //optimization
 int			count_chunked(t_stack *a, int start, int end);

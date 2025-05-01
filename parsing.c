@@ -6,7 +6,7 @@
 /*   By: imutavdz <imutavdz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 12:06:25 by imutavdz          #+#    #+#             */
-/*   Updated: 2025/04/24 18:44:58 by imutavdz         ###   ########.fr       */
+/*   Updated: 2025/05/01 19:26:08 by imutavdz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 /*
@@ -25,10 +25,10 @@ int	is_valid_arg(const char *str, long long *values)
 	int			overflow;
 
 	if (!is_valid_digit(str))
-		clean_exit("Error\n", NULL, NULL, NULL);
+		return (0);
 	output = ft_atol_ps(str, &overflow);
 	if (overflow)
-		clean_exit("Error\n", NULL, NULL, NULL);
+		return (0);
 	*values = output;
 	return (1); //success
 }
@@ -86,7 +86,7 @@ int	valid_input(int argc, char *argv[], t_stack **a)
 	while (i < argc)
 	{
 		if (!is_valid_arg(argv[i], &holder[i - 1])) //pass-by-reference approach
-			clean_exit("Error\n", NULL, NULL, holder);
+			clean_exit("Error\n", a, NULL, holder);
 		i++;
 	}
 	if (has_dup(holder, size))
@@ -103,29 +103,29 @@ int	valid_input(int argc, char *argv[], t_stack **a)
 void	assign_pos(t_stack *a, int stack_size)
 {
 	int		*arr;
-	int		i;
-	t_node	*nodes;
+	// int		i;
+	// t_node	*nodes;
 
-	nodes = a->head;
-	i = 0;
+	// nodes = a->head;
+	// i = 0;
 	arr = malloc(sizeof(int) * stack_size);
 	if (!arr)
 		return ;
 	move_values(a, arr);
 	sort_arr(arr, stack_size);
 	assign_rank(a, arr, stack_size);
-	while (i < stack_size)
-	{
-		printf("%d/", arr[i]);
-		i++;
-	}
-	printf("\n");
-	i = 0;
-	while (nodes)
-	{
-		printf("position:%d,\n value:%d\n", nodes->position, nodes->value);
-		nodes = nodes->next;
-	}
+	// while (i < stack_size)
+	// {
+	// 	printf("%d/", arr[i]);
+	// 	i++;
+	// }
+	// printf("\n");
+	// i = 0;
+	// while (nodes)
+	// {
+	// 	printf("position:%d,\n value:%d\n", nodes->position, nodes->value);
+	// 	nodes = nodes->next;
+	// }
 	free(arr);
 }
 

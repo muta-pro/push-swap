@@ -6,7 +6,7 @@
 /*   By: imutavdz <imutavdz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/23 16:20:49 by imutavdz          #+#    #+#             */
-/*   Updated: 2025/04/26 01:33:13 by imutavdz         ###   ########.fr       */
+/*   Updated: 2025/05/01 19:30:40 by imutavdz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "ps.h"
@@ -24,9 +24,10 @@ long	ft_atol_ps(const char *str, int *overflow)//atol
 	result = 0;
 	sign = 1;
 	*overflow = 0; //the output parameter
-	if (*str == '-')
+	if (*str == '-' || *str == '+')
 	{
-		sign = -1;
+		if (*str == '-')
+			sign = -1;
 		str++;
 	}
 	while (*str)
@@ -55,26 +56,26 @@ int	is_valid_digit(const char *str)
 	int	i;
 
 	i = 0;
-	while (str[i] == '-' || str[i] == '+')
+	if (!str || str[0] == '\0')
+		return (0);
+	if (str[i] == '-' || str[i] == '+')
 		i++;
-	if (ft_isdigit(str[i]))
+	if (!ft_isdigit(str[i]))
+		return (0);
+	while (str[i])
 	{
-		while (str[i])
-		{
-			if (!ft_isdigit(str[i]))
-				return (0);
-			i++;
-		}
-		return (1);
+		if (!ft_isdigit(str[i]))
+			return (0);
+		i++;
 	}
-	return (0);
+	return (1);
 }
 
 int	is_sorted(t_stack *stack)
 {
 	t_node	*current;
 
-	if (!stack || !stack->head || stack->head == stack->head->next)
+	if (!stack || !stack->head || !stack->head->next)
 		return (1);
 	current = stack->head;
 	while (current->next)

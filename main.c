@@ -6,7 +6,7 @@
 /*   By: imutavdz <imutavdz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/22 23:28:19 by imutavdz          #+#    #+#             */
-/*   Updated: 2025/04/26 03:26:33 by imutavdz         ###   ########.fr       */
+/*   Updated: 2025/05/01 19:21:01 by imutavdz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "ps.h"
@@ -26,12 +26,8 @@ void	ultimate_sorter(t_stack **a, t_stack **b)
 		if ((*a)->stack_size <= 5)
 			minisort(*a, *b, (*a)->stack_size);
 		else if ((*a)->stack_size > 5)
-			greedy_sort(a, b);
-		else
-			clean_exit("Error\n", a, b, NULL);
+			chunk_sort(a, b, (*a)->stack_size);
 	}
-	else
-		clean_exit("Error\n", a, b, NULL);
 }
 
 int	main(int argc, char *argv[])
@@ -52,11 +48,13 @@ int	main(int argc, char *argv[])
 		clean_exit("Error\n", &a, NULL, NULL);
 	assign_pos(a, a->stack_size);
 	ultimate_sorter(&a, &b);
+	// print_stack(a);
     // --- Print total moves ---
-    total_moves = get_move_count(false); // Get final count without incrementing
-    ft_putstr_fd("Total moves: ", 1);
-    ft_putnbr_fd(total_moves, 1); // Assuming ft_putnbr_fd works with size_t or int
-    ft_putendl_fd("", 1);
+	total_moves = get_move_count(false); // Get final count without incrementing
+	ft_putstr_fd("Total moves: ", 1);
+	ft_putnbr_fd(total_moves, 1); // Assuming ft_putnbr_fd works with size_t or int
+	ft_putendl_fd("", 1);
+	printf("\nTotal moves:%ld\n", total_moves);
     // --- End print total ---
 	free_stack(&a);
 	free_stack(&b);
